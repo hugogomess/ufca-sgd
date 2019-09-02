@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  debugMode: false,
+  apiUrl: 'https://api-ufca-sgd.herokuapp.com'
 };
