@@ -7,7 +7,7 @@ import 'zone.js/dist/zone-error';
 export const environment = {
   production: false,
   debugMode: true,
-  apiUrl: 'https://api-ufca-sgd.herokuapp.com'
+  apiRoot: 'https://api-ufca-sgd.herokuapp.com/'
 };
 
 /*
