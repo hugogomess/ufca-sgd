@@ -5,8 +5,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderModule } from './header';
 import { AuthModule } from './auth';
+import { StaticsModule } from './statics';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +17,6 @@ import { AuthModule } from './auth';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    HeaderModule,
     AuthModule,
     JwtModule.forRoot({
       config: {
@@ -32,9 +32,10 @@ import { AuthModule } from './auth';
         ],
         authScheme: 'JWT '
       }
-    })
+    }),
+    StaticsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
