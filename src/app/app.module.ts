@@ -29,7 +29,8 @@ import { AuthModule } from './auth';
         blacklistedRoutes: [
           'http://localhost:8000/auth/login',
           'https://api-ufca-sgd.herokuapp.com/auth/login'
-        ]
+        ],
+        authScheme: 'JWT '
       }
     })
   ],
