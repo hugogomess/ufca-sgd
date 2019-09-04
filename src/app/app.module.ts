@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
+import { UserModule } from './user';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { StaticsModule } from './statics';
         authScheme: 'JWT '
       }
     }),
-    StaticsModule
+    StaticsModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

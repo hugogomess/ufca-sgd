@@ -1,0 +1,143 @@
+<!-- Breadcrumbs-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Painel Administrativo</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Usuários</a>
+                </li>
+                <li class="breadcrumb-item active">Adicionar Usuário</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Adicionar Usuário</h4>
+                    <div class="text-danger">Os campos com * são obrigatórios!</div>
+                </div>
+                <div class="card-body">
+
+                    <div class="alert alert-danger" role="alert">
+                        Errors
+                    </div>
+
+                    <form>
+                        <div class="form-group row">
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">
+                                Nome <b class="text-danger">*</b>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="first_name" class="form-control" name="first_name"
+                                    placeholder="Primeiro nome do usuário">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right">
+                                Sobrenome
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="last_name" class="form-control" name="last_name"
+                                    placeholder="Sobrenome nome do usuário">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">
+                                E-Mail <b class="text-danger">*</b>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="email" id="email" class="form-control" name="email"
+                                    placeholder="E-mail do usuário">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">
+                                Username <b class="text-danger">*</b>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="username" class="form-control" name="username"
+                                    placeholder="Username nome do usuário">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="permissions" class="col-md-4 col-form-label text-md-right">
+                                Permissões
+                            </label>
+                            <div class="col-md-6">
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">
+                                    Selecione as Permissões <i class="fas fa-sort-down"></i>
+                                </a>
+                                <br />
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <div class="form-check">
+                                            <input name="is_admin" type="checkbox" class="form-check-input"
+                                                id="is_admin">
+                                            <label class="form-check-label" for="is_admin">Administrador</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input name="is_demand_manager" type="checkbox" class="form-check-input"
+                                                id="is_demand_manager">
+                                            <label class="form-check-label" for="is_demand_manager">Gestor de
+                                                Demandas</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input name="is_project_manager" type="checkbox" class="form-check-input"
+                                                id="is_project_manager">
+                                            <label class="form-check-label" for="is_project_manager">Gestor de
+                                                Projetos</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">
+                                Senha <b class="text-danger">*</b>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" class="form-control" name="password"
+                                    placeholder="Senha nome do usuário">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password_repeat" class="col-md-4 col-form-label text-md-right">
+                                Repita a Senha <b class="text-danger">*</b>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="password" id="password_repeat" class="form-control" name="password_repeat"
+                                    placeholder="Repita a senha nome do usuário">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                Adicionar Usuário
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
