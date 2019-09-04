@@ -1,11 +1,24 @@
 #ufca-logo {
-    width: 70px;
+    width: 100px;
     height: 70px;
 }
-
-.topbar .topbar-divider {
-    width: 0;
-    border-right: 1px solid #e3e6f0;
-    height: calc(4.375rem - 2rem);
-    margin: auto 1rem;
+  
+  /*Formatação menu*/
+  nav#menu ul {
+      list-style: none;
+      text-transform: uppercase;
+     
   }
+  nav#menu li {
+      display: inline-block;
+      padding: 3px;
+      margin: 12px;
+      transition: background-color 1s;
+  }
+  
+nav#menu li:hover{
+    background-color: lightgray;
+}
+nav#menu a:hover{
+    color: black;
+}
