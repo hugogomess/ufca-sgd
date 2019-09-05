@@ -25,7 +25,9 @@
                 </div>
                 <div class="card-body">
                     <div *ngIf="errors" class="alert alert-danger">
-                        {{ errors.message }}
+                        <p>{{ errors?.message }}</p>
+                        <hr>
+                        <p>{{ errors?.error | json }}</p>
                     </div>
                     <form #userForm="ngForm" (ngSubmit)="addUser()">
                         <div class="form-group row">
