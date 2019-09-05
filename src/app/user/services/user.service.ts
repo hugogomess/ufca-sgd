@@ -12,7 +12,8 @@ export class UserService {
 
   private apiRoot = environment.apiRoot;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public addUser(user: User): Observable<any> {
     const url = this.apiRoot + 'users/';

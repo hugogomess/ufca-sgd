@@ -24,8 +24,8 @@
                     <div class="text-danger">Os campos com * são obrigatórios!</div>
                 </div>
                 <div class="card-body">
-                    <div *ngIf="error" class="alert alert-danger">
-                        {{ error.message }}
+                    <div *ngIf="errors" class="alert alert-danger">
+                        {{ errors.message }}
                     </div>
                     <form #userForm="ngForm" (ngSubmit)="addUser()">
                         <div class="form-group row">
@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <input type="text" id="firstName" class="form-control"
                                     placeholder="Primeiro nome do usuário" required [(ngModel)]="user.firstName"
-                                    name="name" #firstName="ngModel">
+                                    name="firstName" #firstName="ngModel">
                                 <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
                                     Este campo é obrigatório!
                                 </div>
@@ -84,7 +84,7 @@
                                 Permissões
                             </label>
                             <div class="col-md-6">
-                                <select [(ngModel)]="permissions" class="custom-select" multiple>
+                                <select [(ngModel)]="permissions" class="custom-select" name="permissions" multiple>
                                     <option value="isAdmin">Administrador</option>
                                     <option value="isDemandManager">Gestor de Demandas</option>
                                     <option value="isProjectManager">Gestor de Projetos</option>
