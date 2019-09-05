@@ -7,7 +7,8 @@
   nav#menu ul {
       list-style: none;
       text-transform: uppercase;
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: bold;
+      
      
   }
   nav#menu li {

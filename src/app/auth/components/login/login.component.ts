@@ -9,7 +9,7 @@ import { JwtService } from '../../services';
 })
 export class LoginComponent implements OnInit {
 
-  error: any;
+  errors: any;
 
   constructor(
     private jwtService: JwtService,
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string) {
     this.jwtService.login(username, password).subscribe(
       success => this.router.navigate(['']),
-      error => this.error = error
+      error => this.errors = error
     );
   }
 
