@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -23,19 +25,14 @@ import { UserModule } from './user';
       config: {
         tokenGetter: function  tokenGetter() {
              return     localStorage.getItem('access_token'); },
-        whitelistedDomains: [
-          'localhost:8000',
-          'https://api-ufca-sgd.herokuapp.com/'
-        ],
-        blacklistedRoutes: [
-          'http://localhost:8000/auth/login',
-          'https://api-ufca-sgd.herokuapp.com/auth/login'
-        ],
-        authScheme: 'JWT '
+        whitelistedDomains: ['api-ufca-sgd.herokuapp.com'],
+        blacklistedRoutes: [environment.apiRoot + 'auth/login'],
+        authScheme: 'JWT ',
       }
     }),
     StaticsModule,
-    UserModule
+    UserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

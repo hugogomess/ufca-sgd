@@ -14,12 +14,12 @@ export class JwtService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<{access_token: string}>(
+    return this.http.post<{token: string}>(
       this.apiRoot.concat('auth/login/'),
       { username, password }
     ).pipe(
       tap(res => {
-        localStorage.setItem('access_token', res.access_token);
+        localStorage.setItem('access_token', res.token);
       })
     );
   }

@@ -7,6 +7,10 @@
       $("body").toggleClass("sidebar-toggled");
       $(".sidebar").toggleClass("toggled");
     });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   
     // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
     $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
