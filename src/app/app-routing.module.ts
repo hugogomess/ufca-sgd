@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
+import { NotFoundRoutes } from './statics';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   ...AuthRoutes,
-  ...UserRoutes
+  ...UserRoutes,
+  ...NotFoundRoutes
 ];
 
 @NgModule({
