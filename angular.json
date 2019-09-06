@@ -26,16 +26,14 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/sb-admin.js",
-              "src/assets/js/scripts.js",
-              "src/assets/js/data-tables-bootstrap.js",
-              "src/assets/js/data-tables-jquery.js"
+              "src/assets/js/scripts.js"
             ]
           },
           "configurations": {
