@@ -10,6 +10,7 @@ import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
+    AdminModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function  tokenGetter() {
