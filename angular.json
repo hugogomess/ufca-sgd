@@ -32,7 +32,10 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/sb-admin.js"
+              "src/assets/js/sb-admin.js",
+              "src/assets/js/scripts.js",
+              "src/assets/js/data-tables-bootstrap.js",
+              "src/assets/js/data-tables-jquery.js"
             ]
           },
           "configurations": {
