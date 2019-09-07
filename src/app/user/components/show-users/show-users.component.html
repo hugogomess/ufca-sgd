@@ -1,7 +1,7 @@
 <!-- Breadcrumbs-->
 <div class="row justify-content-center">
     <div class="container">
-        <div class="col-md-12">
+        <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="#">Painel Administrativo</a>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="col-md-11">
+    <div class="col-md-10">
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-user"></i>
@@ -30,16 +30,6 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Sobrenome</th>
-                                <th>E-mail</th>
-                                <th>Nome de usuário</th>
-                                <th>Permissões</th>
-                                <th>Ações</th>
-                            </tr>
-                        </tfoot>
                         <tbody *ngIf="users?.length != 0">
                             <tr *ngFor="let user of users">
                                 <td>{{user.first_name}}</td>
@@ -58,9 +48,9 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <i class="fa fa-pen"></i>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button>
                                     &nbsp;
-                                    <i class="fa fa-trash"></i>
+                                    <button class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i></button>                                    
                                 </td>
                             </tr>
                         </tbody>

@@ -1,1 +1,21 @@
-<p>delete-user works!</p>
+<div class="modal fade" tabindex="-1" role="dialog" [id]="id" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deletar Usuário {{username}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Você tem certeza que quer deletar o usuário <span class="text-primary">"{{firstName}} {{lastName}}"</span>
+                        ?</strong></p>
+                <p>Você pode desfazer esta operação posteriormente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteUser(id)">Deletar</button>
+            </div>
+        </div>
+    </div>
+</div>
