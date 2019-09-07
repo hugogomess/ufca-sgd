@@ -27,8 +27,8 @@ import { AdminModule } from './admin';
       config: {
         tokenGetter: function  tokenGetter() {
              return     localStorage.getItem('access_token'); },
-        whitelistedDomains: ['api-ufca-sgd.herokuapp.com'],
-        blacklistedRoutes: [environment.apiRoot + 'auth/login'],
+        whitelistedDomains: ['api-ufca-sgd.herokuapp.com', 'localhost:8000'],
+        blacklistedRoutes: ['api-ufca-sgd.herokuapp.com/auth/login'],
         authScheme: 'JWT ',
       }
     }),
