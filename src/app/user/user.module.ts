@@ -5,18 +5,20 @@ import { FormsModule } from '@angular/forms';
 
 import { UserService } from './services';
 import { AddUserComponent } from './components';
-import { ShowUsersComponent } from './components/';
+import { ShowUsersComponent } from './components';
+import { DeleteUserComponent } from './components';
 
 
 @NgModule({
-  declarations: [AddUserComponent, ShowUsersComponent],
+  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent],
   imports: [
     CommonModule,
     FormsModule
   ],
    exports: [
     AddUserComponent,
-    ShowUsersComponent
+    ShowUsersComponent,
+    DeleteUserComponent
    ],
    providers: [
      UserService

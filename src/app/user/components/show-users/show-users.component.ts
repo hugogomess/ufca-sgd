@@ -11,13 +11,11 @@ import { UserService } from '../../services';
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css']
 })
-export class ShowUsersComponent implements OnInit, OnChanges {
+export class ShowUsersComponent implements OnInit {
 
   dataTable: any;
   errors: any;
-  dtOptions: any = {};
-
-  @Input()users: User[];
+  users: User[];
 
   constructor(
     private userService: UserService,
@@ -25,19 +23,7 @@ export class ShowUsersComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.dtOptions = {
-      data: [],
-      pagingType: 'full_numbers',
-      pageLength: 2,
-      responsive: true,
-    };
     this.instanceDataTable();
-  }
-
-  ngOnChanges() {
-    if (this.users) {
-      this.dtOptions.data = this.users;
-    }
   }
 
   public instanceDataTable(): void {
@@ -49,12 +35,9 @@ export class ShowUsersComponent implements OnInit, OnChanges {
 
         const table: any = $('table');
         this.dataTable = table.DataTable();
-
-        console.log(this.users);
       },
       error => {
         this.errors = error;
-        console.log(this.errors);
       }
     );
   }
