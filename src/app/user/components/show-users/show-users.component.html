@@ -1,0 +1,67 @@
+<!-- Breadcrumbs-->
+<div class="row justify-content-center">
+    <div class="container">
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Painel Administrativo</a>
+                </li>
+                <li class="breadcrumb-item active">Gerenciar Usuários</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-user"></i>
+                Gerenciar Usuários
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>E-mail</th>
+                                <th>Nome de usuário</th>
+                                <th>Permissões</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="users?.length != 0">
+                            <tr *ngFor="let user of users">
+                                <td>{{user.first_name}}</td>
+                                <td>{{user.last_name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.username}}</td>
+                                <td>
+                                    <span *ngIf="user.is_admin">
+                                        Administrador,
+                                    </span>
+                                    <span *ngIf="user.is_demand_manager">
+                                        Gestor de Demandas,
+                                    </span>
+                                    <span *ngIf="user.is_project_manager">
+                                        Gestor de Projetos
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button>
+                                    &nbsp;
+                                    <button class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i></button>                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="users?.length == 0">
+                            <tr>
+                                <td colspan="6" class="no-data-available">Nenhum usuário encontrado!</td>
+                            </tr>
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

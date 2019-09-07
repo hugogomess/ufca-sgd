@@ -7,7 +7,7 @@
                     <a href="#">Painel Administrativo</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#">Usuários</a>
+                    <a href="#">Gerenciar Usuários</a>
                 </li>
                 <li class="breadcrumb-item active">Adicionar Usuário</li>
             </ol>
@@ -31,28 +31,26 @@
                     </div>
                     <form #userForm="ngForm" (ngSubmit)="addUser()">
                         <div class="form-group row">
-                            <label for="firstName" class="col-md-4 col-form-label text-md-right">
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">
                                 Nome <b class="text-danger">*</b>
                             </label>
                             <div class="col-md-6">
-                                <input type="text" id="firstName" class="form-control"
-                                    placeholder="Primeiro nome do usuário" required [(ngModel)]="user.firstName"
-                                    name="firstName" #firstName="ngModel">
-
-                                <div [hidden]="firstName.valid || firstName.pristine"
-                                    class=" error-validation text-danger">
+                                <input type="text" id="first_name" class="form-control"
+                                    placeholder="Primeiro nome do usuário" required [(ngModel)]="user.first_name"
+                                    name="first_name" #first_name="ngModel">
+                                <div [hidden]="first_name.valid || first_name.pristine" class="error-validation text-danger">
                                     Este campo é obrigatório!
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="lastName" class="col-md-4 col-form-label text-md-right">
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right">
                                 Sobrenome
                             </label>
                             <div class="col-md-6">
-                                <input type="text" id="lastName" class="form-control" name="lastName"
-                                    placeholder="Sobrenome do usuário" [(ngModel)]="user.lastName" #lastName="ngModel">
+                                <input type="text" id="last_name" class="form-control" name="last_name"
+                                    placeholder="Sobrenome do usuário" [(ngModel)]="user.last_name" #last_name="ngModel">
                             </div>
                         </div>
 
@@ -90,9 +88,9 @@
                             </label>
                             <div class="col-md-6">
                                 <select [(ngModel)]="permissions" class="custom-select" name="permissions" multiple>
-                                    <option value="isAdmin">Administrador</option>
-                                    <option value="isDemandManager">Gestor de Demandas</option>
-                                    <option value="isProjectManager">Gestor de Projetos</option>
+                                    <option value="is_admin">Administrador</option>
+                                    <option value="is_demand_manager">Gestor de Demandas</option>
+                                    <option value="is_project_manager">Gestor de Projetos</option>
                                 </select>
                             </div>
 
