@@ -24,8 +24,10 @@
                     <div class="text-danger">Os campos com * são obrigatórios!</div>
                 </div>
                 <div class="card-body">
-                    <div *ngIf="error" class="alert alert-danger">
-                        {{ error }}
+                    <div *ngIf="errors" class="alert alert-danger">
+                        <p>{{ errors?.message }}</p>
+                        <hr>
+                        <p>{{ errors?.error | json }}</p>
                     </div>
                     <form #userForm="ngForm" (ngSubmit)="addUser()">
                         <div class="form-group row">
@@ -36,7 +38,7 @@
                                 <input type="text" id="first_name" class="form-control"
                                     placeholder="Primeiro nome do usuário" required [(ngModel)]="user.first_name"
                                     name="first_name" #first_name="ngModel">
-                                <div [hidden]="first_name.valid || first_name.pristine" class="alert alert-danger">
+                                <div [hidden]="first_name.valid || first_name.pristine" class="error-validation text-danger">
                                     Este campo é obrigatório!
                                 </div>
                             </div>
@@ -59,7 +61,7 @@
                             <div class="col-md-6">
                                 <input type="email" id="email" class="form-control" name="email"
                                     placeholder="E-mail do usuário" required [(ngModel)]="user.email" #email="ngModel">
-                                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                                <div [hidden]="email.valid || email.pristine" class=" error-validation text-danger">
                                     Este campo é obrigatório!
                                 </div>
                             </div>
@@ -73,7 +75,8 @@
                                 <input type="text" id="username" class="form-control" name="username"
                                     placeholder="Username do usuário" required [(ngModel)]="user.username"
                                     #username="ngModel">
-                                <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                                <div [hidden]="username.valid || username.pristine"
+                                    class=" error-validation text-danger">
                                     Este campo é obrigatório!
                                 </div>
                             </div>
@@ -109,7 +112,8 @@
                                 <input type="password" id="password" class="form-control" name="password"
                                     placeholder="Senha do usuário" required [(ngModel)]="user.password"
                                     #password="ngModel">
-                                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                                <div [hidden]="password.valid || password.pristine"
+                                    class=" error-validation text-danger">
                                     Este campo é obrigatório!
                                 </div>
                             </div>
