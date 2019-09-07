@@ -3,16 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
- //import { NotFoundRoutes } from './statics';
-import { ManegeUserRoutes } from './admin';
+import { AdminRoutes } from './admin';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   ...AuthRoutes,
   ...UserRoutes,
- // ...NotFoundRoutes,
-  ...ManegeUserRoutes
+  ...AdminRoutes
 ];
 
 @NgModule({

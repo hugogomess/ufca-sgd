@@ -1,1 +1,1 @@
-export * from './manage-user';
+export * from './admin-panel';

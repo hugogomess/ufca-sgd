@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { ManageUserComponent } from './components';
+import { AdminPanelComponent } from './components';
 
-export const ManegeUserRoutes: Routes = [
-    {path: 'admin', component: ManageUserComponent}
+export const AdminRoutes: Routes = [
+    {path: 'admin', component: AdminPanelComponent}
 ];
