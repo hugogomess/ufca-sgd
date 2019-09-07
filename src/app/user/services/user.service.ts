@@ -19,9 +19,7 @@ export class UserService {
 
   public addUser(user: User): Observable<any> {
     const url = this.apiRoot + 'users/';
-    return this.http.post(url, user).pipe(
-      catchError(error => throwError(error.message || error.statusText))
-    );
+    return this.http.post(url, user);
   }
 
   public findAll(): Observable<User[]> {

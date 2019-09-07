@@ -22,3 +22,7 @@ nav#menu li {
 nav#menu a:hover {
     color: #F2A007;
 }
+
+nav#menu {
+    background-color: #73544C;
+}

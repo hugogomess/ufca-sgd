@@ -32,7 +32,7 @@ export class AddUserComponent implements OnInit {
     this.setPermissions();
     if (this.userForm.form.valid) {
       this.userService.addUser(this.user).subscribe(
-        res => this.router.navigate['admin/usuarios/'],
+        res => this.router.navigate['/admin/usuarios/'],
         error => this.error = error
       );
     }
