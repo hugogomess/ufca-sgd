@@ -7,7 +7,7 @@ export class User {
         public password?: string,
         public isAdmin?: boolean,
         public isDemandManager?: boolean,
-        public isProjectManager?: boolean,kkk
+        public isProjectManager?: boolean,
         public lastName?: string,
 
         ) {}
