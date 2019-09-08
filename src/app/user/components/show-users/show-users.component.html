@@ -1,23 +1,36 @@
 <!-- Breadcrumbs-->
 <div class="row justify-content-center">
-    <div class="container">
-        <div>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Painel Administrativo</a>
-                </li>
-                <li class="breadcrumb-item active">Gerenciar Usuários</li>
-            </ol>
-        </div>
+    <div class="container col-md-10">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/admin">Painel Administrativo</a>
+            </li>
+            <li class="breadcrumb-item active">Gerenciar Usuários</li>
+        </ol>
     </div>
+</div>
 
-    <div class="col-md-10">
+
+<div class="row justify-content-center">
+    <div class="container col-md-10">
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-user"></i>
-                Gerenciar Usuários
+                <h4> Gerenciar Usuários</h4>
             </div>
             <div class="card-body">
+                <div class="row" id="filters-body">
+                    <div class="col-md-8">
+                        Filtros
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button class="btn btn-primary" routerLink="/admin/usuarios/novo">
+                            Adicionar Usuário
+                        </button>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -27,6 +40,7 @@
                                 <th>E-mail</th>
                                 <th>Nome de usuário</th>
                                 <th>Permissões</th>
+                                <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -48,9 +62,16 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button>
-                                    &nbsp;
-                                    <button class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i></button>                                    
+                                    <span *ngIf="user.is_active">
+                                        Ativo
+                                    </span>
+                                    <span class="deleted" *ngIf="!user.is_active">
+                                        <a>Excluído</a>
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button> &nbsp;
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -58,7 +79,7 @@
                             <tr>
                                 <td colspan="6" class="no-data-available">Nenhum usuário encontrado!</td>
                             </tr>
-                        <tbody>
+                            <tbody>
                     </table>
                 </div>
             </div>

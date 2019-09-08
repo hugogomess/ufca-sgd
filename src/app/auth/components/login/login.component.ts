@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtService } from '../../services';
+import { NgForm } from '@angular/forms';
+
+import { User } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,10 @@ import { JwtService } from '../../services';
 })
 export class LoginComponent implements OnInit {
 
-  errors: any;
+  user: User;
+  error: any;
+
+  @ViewChild('userForm', { static: true }) userForm: NgForm;
 
   constructor(
     private jwtService: JwtService,
@@ -17,13 +23,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = new User('', '');
   }
 
-  login(username: string, password: string) {
-    this.jwtService.login(username, password).subscribe(
-      success => this.router.navigate(['']),
-      error => this.errors = error
-    );
+  login() {
+    if (this.userForm.form.valid) {
+      this.jwtService.login(this.user).subscribe(
+        success => this.router.navigate(['']),
+        error => this.error = error
+      );
+    }
   }
 
 }

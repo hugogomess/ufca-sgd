@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
+import { User } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,13 @@ export class JwtService {
 
   private apiRoot = environment.apiRoot;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  login(username: string, password: string) {
+  login(user: User) {
     return this.http.post<{token: string}>(
-      this.apiRoot.concat('auth/login/'),
-      { username, password }
-    ).pipe(
-      tap(res => {
+      this.apiRoot.concat('auth/login/'), user)
+      .pipe(tap(res => {
         localStorage.setItem('access_token', res.token);
       })
     );

@@ -5,9 +5,18 @@
  * General styles
  */
 
-.card-container.card {
-    max-width: 350px;
-    padding: 40px 40px;
+ .error {
+    display: block;
+    color: red;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .btn {
@@ -58,32 +67,18 @@
     min-height: 1em;
 }
 
-.reauth-email {
-    display: block;
-    color: #D99C2B;
-    line-height: 2;
-    margin-bottom: 10px;
-    font-size: 14px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin #inputEmail,
-.form-signin #inputPassword {
+input[type=email],
+input[type=password],
+input[type=text] {
     direction: ltr;
     height: 44px;
     font-size: 16px;
 }
 
-.form-signin input[type=email],
-.form-signin input[type=password],
-.form-signin input[type=text],
-.form-signin button {
+input[type=email],
+input[type=password],
+input[type=text],
+button {
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -92,45 +87,4 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-    border-color: #D99C2B;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #D99C2B;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #D99C2B;
-}
-
-.btn.btn-signin {
-    /*background-color: #402E2A; */
-    background-color: #402E2A;
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
-    font-weight: 700;
-    font-size: 14px;
-    height: 36px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: none;
-    -o-transition: all 0.218s;
-    -moz-transition: all 0.218s;
-    -webkit-transition: all 0.218s;
-    transition: all 0.218s;
-}
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-    background-color:#D99C2B;
-}
-
-.forgot-password {
-    color: #D99C2B;
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: #D99C2B;
 }

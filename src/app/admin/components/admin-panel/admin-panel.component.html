@@ -1,42 +1,42 @@
 <!-- Breadcrumbs-->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Painel Administrativo</li>
-            </ol>
-        </div>
+<div class="row justify-content-center">
+    <div class="container col-md-10">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Painel Administrativo</li>
+        </ol>
     </div>
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Painel Administrativo</h4>
-                </div>
-                <div class="card-body">
-                    <div class="card-body">
-                        <ul class="list-unstyled">
-                            <li>
-                                <i class="fa fa-clipboard" aria-hidden="true"></i> <a class="" href="#"> Gerenciar
-                                    Demandas</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-user " aria-hidden="true"></i> <a class="" href="#"> Gerenciar
-                                    Usuários</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-cogs"></i><a class="" href="#"> Gerenciar Matriz GUT</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-book" aria-hidden="true"></i> <a class="" href="#"> Gerenciar Termos de
-                                    Abertura</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<div class="row justify-content-center">
+    <div class="container col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h4>Painel Administrativo</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled" id="options-list">
+                    <li>
+                        <i class="fa fa-clipboard"></i>
+                        <a routerLink="/admin/demandas"> Gerenciar Demandas</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <a routerLink="/admin/usuarios"> Gerenciar Usuários</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-cogs"></i>
+                        <a routerLink="/admin/matrizes-gut"> Gerenciar Matrizes GUT</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-book"></i>
+                        <a routerLink="/admin/termos-de-abertura">
+                            Gerenciar Termos de Abertura
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

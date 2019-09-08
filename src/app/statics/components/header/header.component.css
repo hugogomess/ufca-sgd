@@ -10,13 +10,12 @@ ul#menus {
     list-style: none;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 120%;
+    font-size: 125%;
+    font-weight: bold;
 }
 
 ul#menus li {
     display: inline-block;
-    padding: 2px;
-    margin: 5px;
     transition: background-color 1s;
 }
 
@@ -29,9 +28,8 @@ ul#menus a:hover {
 
 ul#NavItem {
     list-style: none;
-    text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 90%;
+    font-weight: bold;
 }
 
 ul#NavItem a:hover {
@@ -40,4 +38,8 @@ ul#NavItem a:hover {
 
 nav#menu {
     background-color: #73544C;
+}
+
+ul#NavItem a:focus {
+    color: #F2A007;
 }

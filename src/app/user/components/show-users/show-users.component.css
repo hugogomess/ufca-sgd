@@ -236,3 +236,12 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:first-chi
 div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-child {
     padding-right: 0
 }
+
+#filters-body {
+    margin-bottom: 10px;
+}
+
+.deleted {
+    font-style: italic;
+    text-decoration: underline;
+}

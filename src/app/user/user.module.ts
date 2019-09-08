@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
 
 
 import { UserService } from './services';
@@ -13,7 +14,8 @@ import { DeleteUserComponent } from './components';
   declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
    exports: [
     AddUserComponent,
