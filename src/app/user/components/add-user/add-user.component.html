@@ -24,9 +24,10 @@
                 <div class="text-danger">Os campos com * são obrigatórios!</div>
             </div>
             <div class="card-body">
-                <div *ngIf="error" class="alert alert-danger">
-                    <p>{{ error?.message }}</p>
-                    <hr>
+                <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <p>{{ error?.error | json }}</p>
                 </div>
                 <form #userForm="ngForm" (ngSubmit)="addUser()">

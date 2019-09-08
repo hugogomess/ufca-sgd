@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { UserService } from '../../services';
 
 @Component({
@@ -8,21 +9,27 @@ import { UserService } from '../../services';
 })
 export class DeleteUserComponent implements OnInit {
 
-  @Input() id: number;
+  error: any;
+
+  @Input() userId: number;
   @Input() username: string;
-  @Input() firstName: string;
-  @Input() lastName: string;
-  // @Output() onConfirm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() confirm = new EventEmitter();
 
   constructor(
-    userService: UserService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
   }
 
-  // public deleteUser(id: number) {
-  //   this.onConfirm.emit();
-  // }
+  public deleteUser(id: number) {
+    this.userService.deleteUser(id).subscribe(
+      success => {
+        const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';
+        this.confirm.emit({ alertType: 'success', message: successMessage  });
+      },
+      error => this.confirm.emit({ alertType: 'error', message: error.message })
+    );
+  }
 
 }

@@ -31,4 +31,19 @@ export class UserService {
         catchError(error => throwError(error.message || error))
       );
   }
+
+  public deleteUser(id: number): Observable<any> {
+    const url = this.apiRoot + `users/${id}/`;
+    return this.http.delete(url);
+  }
+
+  public reActiveUser(id: number): Observable<any> {
+    const url = this.apiRoot + `users/${id}/activate/`;
+    return this.http.get(url);
+  }
+
+  public updateUser(user: User): Observable<User> {
+    const url = this.apiRoot + `users/${user.id}/`;
+    return this.http.patch(url, user);
+  }
 }

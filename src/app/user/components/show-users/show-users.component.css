@@ -243,5 +243,9 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-chil
 
 .deleted {
     font-style: italic;
-    text-decoration: underline;
+    text-decoration: underline red;
+}
+
+.btn-action {
+    margin: 5px;
 }

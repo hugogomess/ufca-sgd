@@ -1,4 +1,5 @@
-<div class="modal fade" tabindex="-1" role="dialog" [id]="id" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+<div class="modal fade" tabindex="-1" role="dialog" [id]="'id-'.concat(username)" tabindex="-1" role="dialog"
+    aria-labelledby="modalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,13 +9,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Você tem certeza que quer deletar o usuário <span class="text-primary">"{{firstName}} {{lastName}}"</span>
+                <p><strong>Você tem certeza que quer deletar o usuário <span class="text-primary">"{{username}}"</span>
                         ?</strong></p>
-                <p>Você pode desfazer esta operação posteriormente.</p>
+                <p class="modal-description">Você poderá desfazer esta operação posteriormente.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="deleteUser(id)">Deletar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser(userId)">Deletar</button>
             </div>
         </div>
     </div>

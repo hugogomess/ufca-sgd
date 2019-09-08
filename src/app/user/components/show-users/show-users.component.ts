@@ -14,8 +14,11 @@ import { UserService } from '../../services';
 export class ShowUsersComponent implements OnInit {
 
   dataTable: any;
-  errors: any;
+  error: boolean;
   users: User[];
+  success: boolean;
+  successMessage: string;
+  errorMessage: any;
 
   constructor(
     private userService: UserService,
@@ -37,8 +40,26 @@ export class ShowUsersComponent implements OnInit {
         this.dataTable = table.DataTable();
       },
       error => {
-        this.errors = error;
+        this.error = true;
+        this.errorMessage = error;
       }
     );
+  }
+
+  public setAlert(alertType: string, message: string): void {
+    this.closeAlert();
+    this.ngOnInit();
+    if (alertType === 'success') {
+      this.success = true;
+      this.successMessage = message;
+    } else if (alertType === 'error') {
+      this.error = true;
+      this.errorMessage = message;
+    }
+  }
+
+  public closeAlert(): void {
+    this.success = false;
+    this.error = false;
   }
 }

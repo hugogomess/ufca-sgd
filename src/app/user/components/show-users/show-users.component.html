@@ -16,11 +16,24 @@
 
 <div class="row justify-content-center">
     <div class="container col-md-10">
+
         <div class="card mb-3">
             <div class="card-header">
                 <h4> Gerenciar Usuários</h4>
             </div>
             <div class="card-body">
+                <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" (click)="closeAlert()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <b>{{successMessage}}</b>
+                </div>
+                <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <b>{{errorMessage}}</b>
+                </div>
                 <div class="row" id="filters-body">
                     <div class="col-md-8">
                         Filtros
@@ -66,20 +79,29 @@
                                         Ativo
                                     </span>
                                     <span class="deleted" *ngIf="!user.is_active">
-                                        <a>Excluído</a>
+                                        <a class="text-danger">Excluído</a>
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button> &nbsp;
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+
+                                    <app-delete-user [userId]="user.id" [username]="user.username"
+                                        (confirm)="setAlert($event.alertType, $event.message)">
+                                    </app-delete-user>
+
+                                    <button class="btn btn-primary btn-xs btn-action"><i class="fa fa-pen"></i></button>
+                                    <button class="btn btn-danger btn-xs btn-action" data-toggle="modal"
+                                        [attr.data-target]="'#id-'.concat(user.username)"><i
+                                            class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody *ngIf="users?.length == 0">
+                        <tbody *ngIf="users.length == 0">
                             <tr>
-                                <td colspan="6" class="no-data-available">Nenhum usuário encontrado!</td>
+                                <td colspan="7">
+                                    <h1 class="text-center">Nenhum usuário encontrado!</h1>
+                                </td>
                             </tr>
-                            <tbody>
+                        <tbody>
                     </table>
                 </div>
             </div>
