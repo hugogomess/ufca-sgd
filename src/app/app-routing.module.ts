@@ -3,16 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
+import { AdminRoutes } from './admin';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   ...AuthRoutes,
-  ...UserRoutes
+  ...UserRoutes,
+  ...AdminRoutes
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

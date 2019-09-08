@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header';
 import { RouterModule } from '@angular/router';
+
+import { AdminPanelComponent } from './components';
 
 
 @NgModule({
-declarations: [HeaderComponent, ],
+  declarations: [AdminPanelComponent],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
-    HeaderComponent,
-  ]
+    AdminPanelComponent
+   ],
+   providers: []
+
 })
-export class StaticsModule { }
+export class AdminModule { }

@@ -10,6 +10,7 @@ import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin';
 
 
 @NgModule({
@@ -21,12 +22,13 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
+    AdminModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function  tokenGetter() {
              return     localStorage.getItem('access_token'); },
-        whitelistedDomains: ['api-ufca-sgd.herokuapp.com'],
-        blacklistedRoutes: [environment.apiRoot + 'auth/login'],
+        whitelistedDomains: ['api-ufca-sgd.herokuapp.com', 'localhost:8000'],
+        blacklistedRoutes: ['api-ufca-sgd.herokuapp.com/auth/login'],
         authScheme: 'JWT ',
       }
     }),

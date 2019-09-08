@@ -1,22 +1,32 @@
-<div class="container">
-  <div class="card card-container">
-      <img id="profile-img" class="profile-img-card" src="../../../../assets/images/ufca-logo.svg" />
-      <div class="form-group" class="alert alert-danger" *ngIf="errors" >
-        <p>{{ errors?.message }}</p>
-        <hr>
-        <p>{{ errors?.error | json }}</p>
-      </div>
-      <form class="form-signin">
-          <span id="reauth-email" class="reauth-email"></span>
-          <input type="text" id="inputEmail" class="form-control" placeholder="Nome de usuário" required autofocus #username>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Senha" #password required>
-          <input class="btn btn-lg btn-primary btn-block btn-signin" (click)="login(username.value, password.value)" value="Entrar" type="submit"/>
-      </form>
-      <a href="#" class="forgot-password">
+<div class="row justify-content-center">
+  <div class="container col-md-4">
+    <div class="container">
+      <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="../../../../assets/images/ufca-logo.svg" />
+        <form #userForm="ngForm" (ngSubmit)="login()">
+          <span class="error" *ngIf="error">
+            {{ error?.error | json }}
+          </span>
+          <input type="text" class="form-control" placeholder="Nome de usuário" required autofocus
+            [(ngModel)]="user.username" name="username" #username="ngModel">
+          <div [hidden]="username.valid || username.pristine" class="text-danger">
+            Este campo é obrigatório!
+          </div>
+          <input type="password" class="form-control" placeholder="Senha" required name="password"
+            [(ngModel)]="user.password" #password="ngModel">
+          <div [hidden]="password.valid || password.pristine" class="text-danger">
+            Este campo é obrigatório!
+          </div>
+          <input class="btn btn-primary btn-block" [disabled]="!userForm.form.valid" (click)="login()" value="Entrar"
+            type="submit" />
+        </form>
+        <a href="#">
           Esqueceu a senha?
-      </a>
-      <a target="_blank" href="https://atendimento.ufca.edu.br/" class="forgot-password">
-        Não tem um usuário?
-      </a>
+        </a>
+        <a target="_blank" href="https://atendimento.ufca.edu.br/">
+          Não tem um usuário?
+        </a>
+      </div>
+    </div>
   </div>
 </div>

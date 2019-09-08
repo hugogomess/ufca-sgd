@@ -14,7 +14,7 @@ import { UserService } from '../../services';
 export class AddUserComponent implements OnInit {
 
   user: User;
-  errors: any;
+  error: any;
   permissions: string[];
 
   @ViewChild('userForm', { static: true }) userForm: NgForm;
@@ -32,29 +32,29 @@ export class AddUserComponent implements OnInit {
     this.setPermissions();
     if (this.userForm.form.valid) {
       this.userService.addUser(this.user).subscribe(
-        res => this.router.navigate['admin/usuarios/'],
-        error => this.errors = error
+        res => this.router.navigate['/admin/usuarios/'],
+        error => this.error = error
       );
     }
   }
 
   public setPermissions(): void {
-    if (this.permissions.includes('isAdmin')) {
-      this.user.isAdmin = true;
+    if (this.permissions.includes('is_admin')) {
+      this.user.is_admin = true;
     } else {
-      this.user.isAdmin = false;
+      this.user.is_admin = false;
     }
 
-    if (this.permissions.includes('isDemandManager')) {
-      this.user.isDemandManager = true;
+    if (this.permissions.includes('is_demand_manager')) {
+      this.user.is_demand_manager = true;
     } else {
-      this.user.isDemandManager = false;
+      this.user.is_demand_manager = false;
     }
 
-    if (this.permissions.includes('isProjectManager')) {
-      this.user.isProjectManager = true;
+    if (this.permissions.includes('is_project_manager')) {
+      this.user.is_project_manager = true;
     } else {
-      this.user.isProjectManager = false;
+      this.user.is_project_manager = false;
     }
   }
 

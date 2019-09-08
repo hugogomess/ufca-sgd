@@ -1,151 +1,142 @@
 <!-- Breadcrumbs-->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Painel Administrativo</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="#">Usuários</a>
-                </li>
-                <li class="breadcrumb-item active">Adicionar Usuário</li>
-            </ol>
-        </div>
+<div class="row justify-content-center">
+    <div class="container col-md-10">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/admin">Painel Administrativo</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/admin/usuarios">Gerenciar Usuários</a>
+            </li>
+            <li class="breadcrumb-item active">Adicionar Usuário</li>
+        </ol>
     </div>
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Adicionar Usuário</h4>
-                    <div class="text-danger">Os campos com * são obrigatórios!</div>
+<div class="row justify-content-center">
+    <div class="container col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h4>Adicionar Usuário</h4>
+                <div class="text-danger">Os campos com * são obrigatórios!</div>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="alert alert-danger">
+                    <p>{{ error?.message }}</p>
+                    <hr>
+                    <p>{{ error?.error | json }}</p>
                 </div>
-                <div class="card-body">
-                    <div *ngIf="errors" class="alert alert-danger">
-                        <p>{{ errors?.message }}</p>
-                        <hr>
-                        <p>{{ errors?.error | json }}</p>
+                <form #userForm="ngForm" (ngSubmit)="addUser()">
+                    <div class="form-group row">
+                        <label for="first_name" class="col-md-4 col-form-label text-md-right">
+                            Nome <b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" id="first_name" class="form-control"
+                                placeholder="Primeiro nome do usuário" required [(ngModel)]="user.first_name"
+                                name="first_name" #first_name="ngModel">
+                            <div [hidden]="first_name.valid || first_name.pristine"
+                                class="error-validation text-danger">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
                     </div>
-                    <form #userForm="ngForm" (ngSubmit)="addUser()">
-                        <div class="form-group row">
-                            <label for="firstName" class="col-md-4 col-form-label text-md-right">
-                                Nome <b class="text-danger">*</b>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="text" id="firstName" class="form-control"
-                                    placeholder="Primeiro nome do usuário" required [(ngModel)]="user.firstName"
-                                    name="firstName" #firstName="ngModel">
 
-                                <div [hidden]="firstName.valid || firstName.pristine"
-                                    class=" error-validation text-danger">
-                                    Este campo é obrigatório!
-                                </div>
+                    <div class="form-group row">
+                        <label for="last_name" class="col-md-4 col-form-label text-md-right">
+                            Sobrenome
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" id="last_name" class="form-control" name="last_name"
+                                placeholder="Sobrenome do usuário" [(ngModel)]="user.last_name" #last_name="ngModel">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">
+                            E-Mail <b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-6">
+                            <input type="email" id="email" class="form-control" name="email"
+                                placeholder="E-mail do usuário" required [(ngModel)]="user.email" #email="ngModel">
+                            <div [hidden]="email.valid || email.pristine" class=" error-validation text-danger">
+                                Este campo é obrigatório!
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="lastName" class="col-md-4 col-form-label text-md-right">
-                                Sobrenome
-                            </label>
-                            <div class="col-md-6">
-                                <input type="text" id="lastName" class="form-control" name="lastName"
-                                    placeholder="Sobrenome do usuário" [(ngModel)]="user.lastName" #lastName="ngModel">
+                    <div class="form-group row">
+                        <label for="username" class="col-md-4 col-form-label text-md-right">
+                            Username <b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" id="username" class="form-control" name="username"
+                                placeholder="Username do usuário" required [(ngModel)]="user.username"
+                                #username="ngModel">
+                            <div [hidden]="username.valid || username.pristine" class=" error-validation text-danger">
+                                Este campo é obrigatório!
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">
-                                E-Mail <b class="text-danger">*</b>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="email" id="email" class="form-control" name="email"
-                                    placeholder="E-mail do usuário" required [(ngModel)]="user.email" #email="ngModel">
-                                <div [hidden]="email.valid || email.pristine" class=" error-validation text-danger">
-                                    Este campo é obrigatório!
-                                </div>
+                    <div class="form-group row">
+                        <label for="permissions" class="col-md-4 col-form-label text-md-right">
+                            Permissões
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                title="Para selecionar múltiplas permissões segure ctrl e click nas permissões desejadas."
+                                data-placement="right">
+                                (<i class="fas fa-question fa-sm"></i>)
+                            </span>
+                        </label>
+                        <div class="col-md-6">
+                            <select [(ngModel)]="permissions" class="custom-select" name="permissions" multiple>
+                                <option value="is_admin">Administrador</option>
+                                <option value="is_demand_manager">Gestor de Demandas</option>
+                                <option value="is_project_manager">Gestor de Projetos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="col-md-4 col-form-label text-md-right">
+                            Senha <b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-6">
+                            <input type="password" id="password" class="form-control" name="password"
+                                placeholder="Senha do usuário" required [(ngModel)]="user.password" #password="ngModel">
+                            <div [hidden]="password.valid || password.pristine" class=" error-validation text-danger">
+                                Este campo é obrigatório!
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">
-                                Username <b class="text-danger">*</b>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="text" id="username" class="form-control" name="username"
-                                    placeholder="Username do usuário" required [(ngModel)]="user.username"
-                                    #username="ngModel">
-                                <div [hidden]="username.valid || username.pristine"
-                                    class=" error-validation text-danger">
-                                    Este campo é obrigatório!
-                                </div>
-                            </div>
+                    <div class="form-group row">
+                        <label for="password_repeat" class="col-md-4 col-form-label text-md-right">
+                            Repita a Senha <b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-6">
+                            <input type="password" id="password_repeat" class="form-control" name="password_repeat"
+                                placeholder="Repita a senha do usuário">
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="permissions" class="col-md-4 col-form-label text-md-right">
-                                Permissões
-                            </label>
-                            <div class="col-md-6">
-                                <select [(ngModel)]="permissions" class="custom-select" name="permissions" multiple>
-                                    <option value="isAdmin">Administrador</option>
-                                    <option value="isDemandManager">Gestor de Demandas</option>
-                                    <option value="isProjectManager">Gestor de Projetos</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-1">
-                                <br />
-                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-                                    title="Para selecionar múltiplas permissões segure ctrl e click nas permissões desejadas."
-                                    data-placement="right">
-                                    <i class="fas fa-question fa-sm"></i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">
-                                Senha <b class="text-danger">*</b>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="password" id="password" class="form-control" name="password"
-                                    placeholder="Senha do usuário" required [(ngModel)]="user.password"
-                                    #password="ngModel">
-                                <div [hidden]="password.valid || password.pristine"
-                                    class=" error-validation text-danger">
-                                    Este campo é obrigatório!
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password_repeat" class="col-md-4 col-form-label text-md-right">
-                                Repita a Senha <b class="text-danger">*</b>
-                            </label>
-                            <div class="col-md-6">
-                                <input type="password" id="password_repeat" class="form-control" name="password_repeat"
-                                    placeholder="Repita a senha do usuário">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary" (click)="addUser()"
-                                [disabled]="!userForm.form.valid">
-                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-                                    title="Os campos com * são obrigatórios!" data-placement="left"
-                                    *ngIf="!userForm.form.valid">
-                                    <b>Adicionar Usuário</b>
-                                </span>
-                                <span *ngIf="userForm.form.valid">
-                                    <b>Adicionar Usuário</b>
-                                </span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="col-md-6 offset-md-4 text-center">
+                        <button type="submit" class="btn btn-primary" (click)="addUser()"
+                            [disabled]="!userForm.form.valid">
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                title="Os campos com * são obrigatórios!" data-placement="left"
+                                *ngIf="!userForm.form.valid">
+                                <b>Adicionar Usuário</b>
+                            </span>
+                            <span *ngIf="userForm.form.valid">
+                                <b>Adicionar Usuário</b>
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -28,4 +28,4 @@ Primeiro você precisa ter instalado o [Node.js 10](https://nodejs.org/en/) e o 
 
 ## Subindo o servidor
 
-Rode no terminal o comando `ng serve` e pelo seu navegador acesse `http://localhost:4200/`. A página atualiza automaticamente sempre que algum arquivo for modificado.
+Rode no terminal o comando `ng serve` e pelo seu navegador acesse `http://localhost:4200/`. A página atualiza automaticamente sempre que algum arquivo for modificado. 
