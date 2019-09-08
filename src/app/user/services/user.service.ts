@@ -37,7 +37,7 @@ export class UserService {
     return this.http.delete(url);
   }
 
-  public reActiveUser(id: number): Observable<any> {
+  public activeUser(id: number): Observable<any> {
     const url = this.apiRoot + `users/${id}/activate/`;
     return this.http.get(url);
   }

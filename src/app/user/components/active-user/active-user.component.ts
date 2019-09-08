@@ -3,11 +3,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services';
 
 @Component({
-  selector: 'app-delete-user',
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.css']
+  selector: 'app-active-user',
+  templateUrl: './active-user.component.html',
+  styleUrls: ['./active-user.component.css']
 })
-export class DeleteUserComponent implements OnInit {
+export class ActiveUserComponent implements OnInit {
 
   @Input() userId: number;
   @Input() username: string;
@@ -20,10 +20,10 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  public deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe(
+  public activeUser(id: number) {
+    this.userService.activeUser(id).subscribe(
       success => {
-        const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';
+        const successMessage = 'O ususário ' + this.username + ' foi ativado com sucesso!';
         this.confirm.emit({ alertType: 'success', message: successMessage  });
       },
       error => this.confirm.emit({ alertType: 'error', message: error.message })

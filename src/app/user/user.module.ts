@@ -8,20 +8,17 @@ import { UserService } from './services';
 import { AddUserComponent } from './components';
 import { ShowUsersComponent } from './components';
 import { DeleteUserComponent } from './components';
+import { ActiveUserComponent } from './components';
 
 
 @NgModule({
-  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent],
+  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent, ActiveUserComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule
   ],
-   exports: [
-    AddUserComponent,
-    ShowUsersComponent,
-    DeleteUserComponent
-   ],
+   exports: [],
    providers: [
      UserService
    ]
