@@ -40,12 +40,12 @@
                     </div>
                     <div class="col-md-4 text-right">
                         <button class="btn btn-primary" routerLink="/admin/usuarios/novo">
-                            Adicionar Usuário
+                            <i class="fas fa-plus"></i> Adicionar Usuário
                         </button>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -57,7 +57,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody *ngIf="users?.length != 0">
+                        <tbody *ngIf="users.length != 0">
                             <tr *ngFor="let user of users">
                                 <td>{{user.first_name}}</td>
                                 <td>{{user.last_name}}</td>
@@ -84,7 +84,7 @@
                                         </app-active-user>
 
                                         <a href="#" class="text-danger" data-toggle="modal"
-                                        [attr.data-target]="'#active-'.concat(user.id)">Excluído</a>
+                                            [attr.data-target]="'#active-'.concat(user.id)">Excluído</a>
                                     </span>
                                 </td>
                                 <td>
@@ -93,10 +93,19 @@
                                         (confirm)="setAlert($event.alertType, $event.message)">
                                     </app-delete-user>
 
-                                    <button class="btn btn-primary btn-xs btn-action"><i class="fa fa-pen"></i></button>
-                                    <button class="btn btn-danger btn-xs btn-action" data-toggle="modal"
-                                        [attr.data-target]="'#delete-'.concat(user.id)"><i
-                                            class="fa fa-trash"></i></button>
+                                    <!-- <app-update-user [userId]="user.id" [username]="user.username"
+                                        (confirm)="setAlert($event.alertType, $event.message)">
+                                    </app-update-user> -->
+
+                                    <button class="btn btn-primary btn-sm btn-action" data-toggle="modal"
+                                    [attr.data-target]="'#update-'.concat(user.id)">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+
+                                    <button class="btn btn-danger btn-sm btn-action" data-toggle="modal"
+                                    [attr.data-target]="'#delete-'.concat(user.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

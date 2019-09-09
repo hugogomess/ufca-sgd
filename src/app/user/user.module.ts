@@ -9,10 +9,11 @@ import { AddUserComponent } from './components';
 import { ShowUsersComponent } from './components';
 import { DeleteUserComponent } from './components';
 import { ActiveUserComponent } from './components';
+import { UpdateUserComponent } from './components';
 
 
 @NgModule({
-  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent, ActiveUserComponent],
+  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent, ActiveUserComponent, UpdateUserComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
     this.user = new User();
   }
 
-  public addUser(): void {
+  public addUser() {
     this.setPermissions();
     if (this.userForm.form.valid) {
       this.userService.addUser(this.user).subscribe(

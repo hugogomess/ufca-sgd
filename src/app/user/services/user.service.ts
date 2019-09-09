@@ -32,6 +32,16 @@ export class UserService {
       );
   }
 
+  public findById(id: number): Observable<User> {
+    const url = this.apiRoot + `users/${id}/`;
+
+    return this.http.get<User>(url)
+      .pipe(
+        map(res => res as User),
+        catchError(error => throwError(error.message || error))
+      );
+  }
+
   public deleteUser(id: number): Observable<any> {
     const url = this.apiRoot + `users/${id}/`;
     return this.http.delete(url);
