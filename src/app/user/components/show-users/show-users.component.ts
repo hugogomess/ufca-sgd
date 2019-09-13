@@ -14,11 +14,10 @@ import { UserService } from '../../services';
 export class ShowUsersComponent implements OnInit {
 
   dataTable: any;
-  error: boolean;
+  error: any;
   users: User[];
   success: boolean;
   successMessage: string;
-  errorMessage: any;
 
   constructor(
     private userService: UserService,
@@ -26,40 +25,35 @@ export class ShowUsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.findAllUsers();
     this.instanceDataTable();
   }
 
   public instanceDataTable(): void {
+    this.chRef.detectChanges();
+    const table: any = $('table');
+    this.dataTable = table.DataTable();
+  }
+
+  private findAllUsers() {
     this.userService.findAll().subscribe(
-      (users: User[]) => {
-        this.users = users;
-
-        this.chRef.detectChanges();
-
-        const table: any = $('table');
-        this.dataTable = table.DataTable();
-      },
+      res => this.users = res,
       error => {
-        this.error = true;
-        this.errorMessage = error;
+        this.users = [];
+        this.error = error;
       }
     );
   }
 
-  public setAlert(alertType: string, message: string): void {
+  public setSuccessAlert(message: string): void {
     this.closeAlert();
     this.ngOnInit();
-    if (alertType === 'success') {
-      this.success = true;
-      this.successMessage = message;
-    } else if (alertType === 'error') {
-      this.error = true;
-      this.errorMessage = message;
-    }
+    this.success = true;
+    this.successMessage = message;
   }
 
   public closeAlert(): void {
     this.success = false;
-    this.error = false;
+    this.error = null;
   }
 }

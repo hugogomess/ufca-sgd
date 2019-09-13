@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
-import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-update-user',
@@ -13,35 +14,47 @@ export class UpdateUserComponent implements OnInit {
 
   user: User;
   error: any;
-  permissions: string[];
+  hiddenModal: boolean;
 
   @Input() userId: number;
   @Input() username: string;
   @Output() confirm = new EventEmitter();
 
-  @ViewChild('userForm', { static: true }) userForm: NgForm;
+  @ViewChild('userFormUpdate', { static: true }) userFormUpdate: NgForm;
 
   constructor(
     private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.user = new User();
     this.userService.findById(this.userId).subscribe(
       res => this.user = res,
       error => this.error = error // TODO
     );
+    this.hiddenModal = false;
   }
 
   public updateUser() {
-    if (this.userForm.form.valid) {
+    if (this.userFormUpdate.form.valid) {
       this.userService.updateUser(this.user).subscribe(
         success => {
           const successMessage = 'O ususário ' + this.username + ' foi atualizado com sucesso!';
-          this.confirm.emit({ alertType: 'success', message: successMessage });
+          this.closeModal();
+          this.confirm.emit({message: successMessage});
         },
-        error => this.confirm.emit({ alertType: 'error', message: error.message })
+        error => this.error = error
       );
     }
+  }
+
+  private closeModal(): void {
+    $('body').removeAttr('style');
+    $('body').removeClass('modal-open');
+    $('#update-' + this.userId).removeClass('show');
+    $('#update-' + this.userId).removeAttr('style');
+    $('#update-' + this.userId).addClass('modal-close');
+    this.hiddenModal = true;
   }
 
 }

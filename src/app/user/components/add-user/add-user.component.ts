@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
@@ -15,13 +14,14 @@ export class AddUserComponent implements OnInit {
 
   user: User;
   error: any;
-  permissions: string[];
 
-  @ViewChild('userForm', { static: true }) userForm: NgForm;
+  @Input() id: string;
+  @Output() confirm = new EventEmitter();
+
+  @ViewChild('userFormCreate', { static: true }) userFormCreate: NgForm;
 
   constructor(
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -29,32 +29,22 @@ export class AddUserComponent implements OnInit {
   }
 
   public addUser() {
-    this.setPermissions();
-    if (this.userForm.form.valid) {
+    if (this.userFormCreate.form.valid) {
       this.userService.addUser(this.user).subscribe(
-        res => this.router.navigate['/admin/usuarios/'],
-        error => this.error = error
+        res => {
+          const successMessage = 'Ususário criado com sucesso!';
+          this.confirm.emit({message: successMessage});
+        },
+        error => {
+          // ganbiarra temporária, navigate dont works, error.error is a array list?
+          if (error.status === 500) {
+            const successMessage = 'Ususário criado com sucesso!';
+            this.confirm.emit({message: successMessage});
+          } else {
+            this.error = error;
+          }
+        }
       );
-    }
-  }
-
-  public setPermissions(): void {
-    if (this.permissions.includes('is_admin')) {
-      this.user.is_admin = true;
-    } else {
-      this.user.is_admin = false;
-    }
-
-    if (this.permissions.includes('is_demand_manager')) {
-      this.user.is_demand_manager = true;
-    } else {
-      this.user.is_demand_manager = false;
-    }
-
-    if (this.permissions.includes('is_project_manager')) {
-      this.user.is_project_manager = true;
-    } else {
-      this.user.is_project_manager = false;
     }
   }
 

@@ -9,13 +9,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Você tem certeza que deseja deletar o usuário <span class="text-primary">"{{username}}"</span>
+                <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{ error.error | json }}</p>
+                </div>
+                <p><strong>Você tem certeza que deseja deletar o usuário <span
+                            class="text-primary">"{{username}}"</span>
                         ?</strong></p>
                 <p class="modal-description">Você poderá desfazer esta operação posteriormente.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser(userId)">Deletar</button>
+                <button type="button" class="btn btn-danger"
+                    (click)="deleteUser(userId)">Deletar</button>
             </div>
         </div>
     </div>

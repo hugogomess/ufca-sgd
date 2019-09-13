@@ -1,6 +1,6 @@
-<div class="modal fade" tabindex="-1" role="dialog" [id]="'update-'.concat(userId)" tabindex="-1" role="dialog"
+<div [hidden]="hiddenModal" class="modal fade" tabindex="-1" role="dialog" [id]="'update-'.concat(userId)" tabindex="-1" role="dialog"
     aria-labelledby="modalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" id="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Atualizar Usuário</h5>
@@ -9,10 +9,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form #userForm="ngForm" (ngSubmit)="updateUser()">
-                    <div class="text-danger text-center form-group">
-                        Os campos com * são obrigatórios!
-                    </div>
+                <div *ngIf="error" class="form-group alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{ error.error | json }}</p>
+                </div>
+                <div class="text-danger text-center form-group">
+                    Os campos com * são obrigatórios!
+                </div>
+                <form #userFormUpdate="ngForm" (ngSubmit)="updateUser()">
                     <div class="form-group row">
                         <label for="first_name" class="col-md-4 col-form-label text-md-right">
                             Nome <b class="text-danger">*</b>
@@ -66,35 +72,46 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="permissions" class="col-md-4 col-form-label text-md-right">
+                        <label class="col-md-4 col-form-label text-md-right">
                             Permissões
-                            <span class="tooltip-test"
-                                title="Para selecionar múltiplas permissões segure ctrl e click nas permissões desejadas.">
-                                (<i class="fas fa-question fa-sm"></i>)
-                            </span>
                         </label>
                         <div class="col-md-6">
-                            <select class="custom-select" multiple ngModel>
-                                <option [selected]="user.is_admin" [(ngModel)]="user.is_admin"
-                                [ngValue]="true" name="is_admin">Administrador</option>
-                                <option [selected]="user.is_demand_manager" name="is_demand_manager"
-                                [(ngModel)]="user.is_demand_manager" [ngValue]="true">Gestor de Demandas</option>
-                                <option [selected]="user.is_project_manager" name="is_project_manager"
-                                [(ngModel)]="user.is_project_manager" [ngValue]="true">Gestor de Projetos</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_admin"
+                                    id="is-admin" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="is-admin">
+                                    Administrador
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_demand_manager"
+                                    id="is-demand-manager" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="is-demand-manager">
+                                    Gestor de Demandas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_project_manager"
+                                    id="is-project-manager" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="is-project-manager">
+                                    Gestor de Projetos
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="updateUser()" data-dismiss="modal" [disabled]="!userForm.form.valid">
+                <button type="submit" class="btn btn-primary" (click)="updateUser()"
+                    [disabled]="!userFormUpdate.form.valid">
                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
-                        title="Os campos com * são obrigatórios!" data-placement="left" *ngIf="!userForm.form.valid">
-                        <b>Salvar Alterações</b>
+                        title="Os campos com * são obrigatórios!" data-placement="left"
+                        *ngIf="!userFormUpdate.form.valid">
+                        <b>Salvar Mudanças</b>
                     </span>
-                    <span *ngIf="userForm.form.valid">
-                        <b>Salvar Alterações</b>
+                    <span *ngIf="userFormUpdate.form.valid">
+                        <b>Salvar Mudanças</b>
                     </span>
                 </button>
             </div>

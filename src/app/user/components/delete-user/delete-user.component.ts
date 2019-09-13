@@ -9,6 +9,8 @@ import { UserService } from '../../services';
 })
 export class DeleteUserComponent implements OnInit {
 
+  error: any;
+
   @Input() userId: number;
   @Input() username: string;
   @Output() confirm = new EventEmitter();
@@ -24,9 +26,9 @@ export class DeleteUserComponent implements OnInit {
     this.userService.deleteUser(id).subscribe(
       success => {
         const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';
-        this.confirm.emit({ alertType: 'success', message: successMessage  });
+        this.confirm.emit({message: successMessage});
       },
-      error => this.confirm.emit({ alertType: 'error', message: error.message })
+      error => this.error = error
     );
   }
 
