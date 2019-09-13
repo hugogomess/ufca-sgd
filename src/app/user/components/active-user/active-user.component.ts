@@ -3,11 +3,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services';
 
 @Component({
-  selector: 'app-delete-user',
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.css']
+  selector: 'app-active-user',
+  templateUrl: './active-user.component.html',
+  styleUrls: ['./active-user.component.css']
 })
-export class DeleteUserComponent implements OnInit {
+export class ActiveUserComponent implements OnInit {
 
   error: any;
 
@@ -22,10 +22,10 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  public deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe(
+  public activeUser(id: number) {
+    this.userService.activeUser(id).subscribe(
       success => {
-        const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';
+        const successMessage = 'O ususário ' + this.username + ' foi ativado com sucesso!';
         this.closeModal();
         this.confirm.emit({message: successMessage});
       },
@@ -36,10 +36,10 @@ export class DeleteUserComponent implements OnInit {
   private closeModal(): void {
     $('body').removeAttr('style');
     $('body').removeClass('modal-open');
-    $('#delete-' + this.userId).removeClass('show');
+    $('#active-' + this.userId).removeClass('show');
     $('div.modal-backdrop').remove('div.modal-backdrop');
-    $('#delete-' + this.userId).removeAttr('style');
-    $('#delete-' + this.userId).addClass('modal-close');
+    $('#active-' + this.userId).removeAttr('style');
+    $('#active-' + this.userId).addClass('modal-close');
   }
 
 }

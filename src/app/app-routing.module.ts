@@ -4,10 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
 import { AdminRoutes } from './admin';
+import { StaticsRoutes } from './statics';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/', pathMatch: 'full'},
+  ...StaticsRoutes,
   ...AuthRoutes,
   ...UserRoutes,
   ...AdminRoutes
