@@ -14,7 +14,6 @@ export class UpdateUserComponent implements OnInit {
 
   user: User;
   error: any;
-  hiddenModal: boolean;
 
   @Input() userId: number;
   @Input() username: string;
@@ -32,7 +31,6 @@ export class UpdateUserComponent implements OnInit {
       res => this.user = res,
       error => this.error = error // TODO
     );
-    this.hiddenModal = false;
   }
 
   public updateUser() {
@@ -52,9 +50,9 @@ export class UpdateUserComponent implements OnInit {
     $('body').removeAttr('style');
     $('body').removeClass('modal-open');
     $('#update-' + this.userId).removeClass('show');
+    $('div.modal-backdrop').remove('div.modal-backdrop');
     $('#update-' + this.userId).removeAttr('style');
     $('#update-' + this.userId).addClass('modal-close');
-    this.hiddenModal = true;
   }
 
 }

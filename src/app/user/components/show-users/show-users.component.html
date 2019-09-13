@@ -32,8 +32,10 @@
                     <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <b>{{error}}</b>
+                    <br>
                     <b>{{error.error | json}}</b>
-                </div> 
+                </div>
                 <div class="row" id="filters-body">
                     <div class="col-md-8">
                         Filtros
@@ -46,11 +48,11 @@
                         <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#add-user-modal'">
                             <i class="fas fa-plus"></i> Adicionar Usuário
                         </button>
-
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                        class="table table-bordered table-striped" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -107,8 +109,8 @@
                                         <i class="fa fa-pen"></i>
                                     </button>
 
-                                    <button [disabled]="!user.is_active" class="btn btn-danger btn-sm btn-action" data-toggle="modal"
-                                        [attr.data-target]="'#delete-'.concat(user.id)">
+                                    <button [disabled]="!user.is_active" class="btn btn-danger btn-sm btn-action"
+                                        data-toggle="modal" [attr.data-target]="'#delete-'.concat(user.id)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </td>

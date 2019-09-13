@@ -33,12 +33,14 @@ export class AddUserComponent implements OnInit {
       this.userService.addUser(this.user).subscribe(
         res => {
           const successMessage = 'Ususário criado com sucesso!';
+          this.closeModal();
           this.confirm.emit({message: successMessage});
         },
         error => {
           // ganbiarra temporária, navigate dont works, error.error is a array list?
           if (error.status === 500) {
             const successMessage = 'Ususário criado com sucesso!';
+            this.closeModal();
             this.confirm.emit({message: successMessage});
           } else {
             this.error = error;
@@ -46,6 +48,15 @@ export class AddUserComponent implements OnInit {
         }
       );
     }
+  }
+
+  private closeModal(): void {
+    $('body').removeAttr('style');
+    $('body').removeClass('modal-open');
+    $('#add-user-modal').removeClass('show');
+    $('div.modal-backdrop').remove('div.modal-backdrop');
+    $('#add-user-modal').removeAttr('style');
+    $('#add-user-modal').addClass('modal-close');
   }
 
 }

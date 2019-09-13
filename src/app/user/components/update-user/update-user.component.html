@@ -1,4 +1,4 @@
-<div [hidden]="hiddenModal" class="modal fade" tabindex="-1" role="dialog" [id]="'update-'.concat(userId)" tabindex="-1" role="dialog"
+<div class="modal fade" tabindex="-1" role="dialog" [id]="'update-'.concat(userId)" tabindex="-1" role="dialog"
     aria-labelledby="modalLabel">
     <div class="modal-dialog" role="document" id="modal">
         <div class="modal-content">
@@ -13,7 +13,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <p>{{ error.error | json }}</p>
+                    <p class="text-center">{{ error.error | json }}</p>
                 </div>
                 <div class="text-danger text-center form-group">
                     Os campos com * são obrigatórios!
