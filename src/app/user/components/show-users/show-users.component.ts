@@ -1,44 +1,80 @@
-import { Component, OnInit, ChangeDetectorRef, Input, OnChanges } from '@angular/core';
-import * as $ from 'jquery';
-import 'datatables.net';
-import 'datatables.net-bs4';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-show-users',
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css']
 })
-export class ShowUsersComponent implements OnInit {
+export class ShowUsersComponent implements OnInit, OnDestroy {
 
-  dataTable: any;
-  errors: any;
-  users: User[];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  error: any;
+  users: User[] = [];
+  success: boolean;
+  successMessage: string;
+
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
 
   constructor(
-    private userService: UserService,
-    private chRef: ChangeDetectorRef
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.instanceDataTable();
+    this.dtOptions = {
+      order: [],
+      paging: true,
+      pageLength: 10,
+      stateSave: false,
+      retrieve: true
+    };
+    this.findAllUsers();
   }
 
-  public instanceDataTable(): void {
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  private findAllUsers() {
     this.userService.findAll().subscribe(
-      (users: User[]) => {
-        this.users = users;
-
-        this.chRef.detectChanges();
-
-        const table: any = $('table');
-        this.dataTable = table.DataTable();
+      res => {
+        this.users = res;
+        this.render();
       },
       error => {
-        this.errors = error;
+        this.error = error;
       }
     );
+  }
+
+  public setSuccessAlert(message: string): void {
+    this.closeAlert();
+    this.findAllUsers();
+    this.success = true;
+    this.successMessage = message;
+  }
+
+  public closeAlert(): void {
+    this.success = false;
+    this.error = null;
+  }
+
+  render(): void {
+    if (this.dtElement.dtInstance) {
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        // Destroy the table first
+        dtInstance.destroy();
+        // Call the dtTrigger to rerender again
+        this.dtTrigger.next();
+      });
+    } else {
+      this.dtTrigger.next();
+    }
   }
 }

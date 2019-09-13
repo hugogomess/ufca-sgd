@@ -16,23 +16,43 @@
 
 <div class="row justify-content-center">
     <div class="container col-md-10">
+
         <div class="card mb-3">
             <div class="card-header">
                 <h4> Gerenciar Usuários</h4>
             </div>
             <div class="card-body">
+                <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" (click)="closeAlert()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <b>{{successMessage}}</b>
+                </div>
+                <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <b>{{error}}</b>
+                    <br>
+                    <b>{{error.error | json}}</b>
+                </div>
                 <div class="row" id="filters-body">
                     <div class="col-md-8">
                         Filtros
                     </div>
                     <div class="col-md-4 text-right">
-                        <button class="btn btn-primary" routerLink="/admin/usuarios/novo">
-                            Adicionar Usuário
+
+                        <app-add-user (confirm)="setSuccessAlert($event.message)" [id]="'add-user-modal'">
+                        </app-add-user>
+
+                        <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#add-user-modal'">
+                            <i class="fas fa-plus"></i> Adicionar Usuário
                         </button>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                        class="table table-bordered table-striped" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -44,7 +64,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody *ngIf="users?.length != 0">
+                        <tbody *ngIf="users.length != 0">
                             <tr *ngFor="let user of users">
                                 <td>{{user.first_name}}</td>
                                 <td>{{user.last_name}}</td>
@@ -66,20 +86,43 @@
                                         Ativo
                                     </span>
                                     <span class="deleted" *ngIf="!user.is_active">
-                                        <a>Excluído</a>
+                                        <app-active-user [userId]="user.id" [username]="user.username"
+                                            (confirm)="setSuccessAlert($event.message)">
+                                        </app-active-user>
+
+                                        <a href="#" class="text-danger" data-toggle="modal"
+                                            [attr.data-target]="'#active-'.concat(user.id)">Excluído</a>
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pen"></i></button> &nbsp;
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+
+                                    <app-delete-user [userId]="user.id" [username]="user.username"
+                                        (confirm)="setSuccessAlert($event.message)">
+                                    </app-delete-user>
+
+                                    <app-update-user [userId]="user.id" [username]="user.username"
+                                        (confirm)="setSuccessAlert($event.message)">
+                                    </app-update-user>
+
+                                    <button class="btn btn-primary btn-sm btn-action" data-toggle="modal"
+                                        [attr.data-target]="'#update-'.concat(user.id)">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+
+                                    <button [disabled]="!user.is_active" class="btn btn-danger btn-sm btn-action"
+                                        data-toggle="modal" [attr.data-target]="'#delete-'.concat(user.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody *ngIf="users?.length == 0">
+                        <tbody *ngIf="users.length == 0">
                             <tr>
-                                <td colspan="6" class="no-data-available">Nenhum usuário encontrado!</td>
+                                <td colspan="7">
+                                    <h3 class="text-center">Nenhum usuário encontrado!</h3>
+                                </td>
                             </tr>
-                            <tbody>
+                        <tbody>
                     </table>
                 </div>
             </div>

@@ -3,7 +3,6 @@
     height: 75px;
 }
 
-
 /*Formatação menu*/
 
 ul#menus {
@@ -19,11 +18,6 @@ ul#menus li {
     transition: background-color 1s;
 }
 
-ul#menus a:hover {
-    color: #F2A007;
-}
-
-
 /*Formatação User Information*/
 
 ul#NavItem {
@@ -32,14 +26,11 @@ ul#NavItem {
     font-weight: bold;
 }
 
-ul#NavItem a:hover {
-    color: #F2A007;
+.user-button {
+    margin-left: 10px;
 }
 
-nav#menu {
-    background-color: #73544C;
-}
-
-ul#NavItem a:focus {
-    color: #F2A007;
+.btn-login {
+    padding-left: 20px;
+    padding-right: 20px;
 }

@@ -34,7 +34,7 @@ import { AdminModule } from './admin';
     }),
     StaticsModule,
     UserModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
