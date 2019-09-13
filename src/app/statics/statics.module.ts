@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header';
 import { RouterModule } from '@angular/router';
+
+import { HeaderComponent } from './components';
+import { HomeComponent } from './components';
 
 
 @NgModule({
-declarations: [HeaderComponent, ],
+declarations: [HeaderComponent, HomeComponent, ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
     HeaderComponent,
+    HomeComponent
   ]
 })
 export class StaticsModule { }

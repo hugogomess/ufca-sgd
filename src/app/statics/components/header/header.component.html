@@ -50,10 +50,7 @@
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" routerLink="/">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
-                    </a>
-                    <a class="dropdown-item" routerLink="/">
-                        <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i> Definições
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Dados Pessoais
                     </a>
                     <a class="dropdown-item" routerLink="/admin">
                         <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i> Painel Administrativo
@@ -66,7 +63,7 @@
             </li>
             <li class="nav-item" [hidden]="jwtService.isLogged" routerLink="/login">
                 <button class="btn btn-primary btn-login">
-                    Login
+                    <b>Login</b>
                 </button>
             </li>
         </ul>
