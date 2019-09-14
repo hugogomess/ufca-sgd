@@ -22,7 +22,7 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  public deleteUser(id) {
+  public deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe(
       success => {
         const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';

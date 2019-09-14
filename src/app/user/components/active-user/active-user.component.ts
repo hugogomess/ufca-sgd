@@ -22,7 +22,7 @@ export class ActiveUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  public activeUser(id) {
+  public activeUser(id: number) {
     this.userService.activeUser(id).subscribe(
       success => {
         const successMessage = 'O ususário ' + this.username + ' foi ativado com sucesso!';
