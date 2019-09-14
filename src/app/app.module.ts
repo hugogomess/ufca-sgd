@@ -12,6 +12,9 @@ import { UserModule } from './user';
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin';
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -25,8 +28,7 @@ import { AdminModule } from './admin';
     AdminModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: function  tokenGetter() {
-             return     localStorage.getItem('access_token'); },
+        tokenGetter,
         whitelistedDomains: ['api-ufca-sgd.herokuapp.com', 'localhost:8000'],
         blacklistedRoutes: ['api-ufca-sgd.herokuapp.com/auth/login'],
         authScheme: 'JWT ',
