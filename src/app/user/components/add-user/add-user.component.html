@@ -1,9 +1,8 @@
-<div class="modal fade" tabindex="-1" role="dialog" [id]="id" tabindex="-1" role="dialog"
-    aria-labelledby="modalLabel">
+<div class="modal fade" tabindex="-1" role="dialog" [id]="id" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade"
-            bdColor="rgba(240,240,240,0.8)" color="#0275d8" name="add-user-spinner">
+            <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade" bdColor="rgba(240,240,240,0.8)"
+                color="#0275d8" name="add-user-spinner">
             </ngx-spinner>
             <div class="modal-header">
                 <h5 class="modal-title">Adicionar Usuário</h5>
@@ -19,7 +18,7 @@
                     <p class="text-center">{{ error.error | json }}</p>
                 </div>
                 <div class="text-danger text-center form-group">
-                    Os campos com * são obrigatórios!
+                    Os campos com asterisco (*) são obrigatórios!
                 </div>
                 <form #userFormCreate="ngForm" (ngSubmit)="addUser()">
                     <div class="form-group row">
@@ -54,7 +53,8 @@
                         <div class="col-md-6">
                             <input type="email" id="email" class="form-control" name="email"
                                 placeholder="E-mail do usuário" required [(ngModel)]="user.email" #email="ngModel">
-                            <div [hidden]="email.valid || email.pristine" class=" error-validation text-danger text-left">
+                            <div [hidden]="email.valid || email.pristine"
+                                class=" error-validation text-danger text-left">
                                 Este campo é obrigatório!
                             </div>
                         </div>
@@ -68,7 +68,8 @@
                             <input type="text" id="username" class="form-control" name="username"
                                 placeholder="Username do usuário" required [(ngModel)]="user.username"
                                 #username="ngModel">
-                            <div [hidden]="username.valid || username.pristine" class="text-left error-validation text-danger">
+                            <div [hidden]="username.valid || username.pristine"
+                                class="text-left error-validation text-danger">
                                 Este campo é obrigatório!
                             </div>
                         </div>
@@ -109,27 +110,42 @@
                         </label>
                         <div class="col-md-6">
                             <input type="password" id="password" class="form-control" name="password"
-                                placeholder="Senha do usuário" required [(ngModel)]="user.password" #password="ngModel">
-                            <div [hidden]="password.valid || password.pristine" class="text-left error-validation text-danger">
-                                Este campo é obrigatório!
+                                placeholder="Senha do usuário" required minlength="8" [(ngModel)]="user.password"
+                                #password="ngModel">
+                            <div [hidden]="password.valid || password.pristine"
+                                class="text-left error-validation text-danger">
+                                <span *ngIf="!!password.errors?.required">
+                                    Este campo é obrigatório!
+                                </span>
+                                <span *ngIf="!!password.errors?.minlength">
+                                    A senha precisa ter pelo menos 8 caracteres!
+                                </span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="password_repeat" class="col-md-4 col-form-label text-md-right">
-                            Repita a Senha <b class="text-danger">*</b>
+                        <label for="passwordConfirm" class="col-md-4 col-form-label text-md-right">
+                            Confirmar senha <b class="text-danger">*</b>
                         </label>
                         <div class="col-md-6">
-                            <input type="password" id="password_repeat" class="form-control" name="password_repeat"
-                                placeholder="Repita a senha do usuário" #passwordRepeat>
+                            <input type="password" id="passwordConfirm" class="form-control"
+                            name="passwordConfirm" placeholder="Repita a senha do usuário" required
+                            [(ngModel)]="passwordConfirm" #passwordConfirmText="ngModel">
+                            <div [hidden]="passwordConfirmText.valid || passwordConfirmText.pristine"
+                                class="text-left error-validation text-danger">
+                                <span *ngIf="!!passwordConfirmText.errors?.required">
+                                    Este campo é obrigatório!
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </form>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" (click)="addUser()" [disabled]="!userFormCreate.form.valid">
+                    <button type="submit" class="btn btn-primary" (click)="addUser()"
+                        [disabled]="!userFormCreate.form.valid">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
                             title="Os campos com * são obrigatórios!" data-placement="left"
                             *ngIf="!userFormCreate.form.valid">

@@ -15,6 +15,7 @@ export class AddUserComponent implements OnInit {
 
   user: User;
   error: any;
+  passwordConfirm: string;
 
   @Input() id: string;
   @Output() confirm = new EventEmitter();
