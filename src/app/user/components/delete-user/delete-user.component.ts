@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { UserService } from '../../services';
 
@@ -16,20 +17,26 @@ export class DeleteUserComponent implements OnInit {
   @Output() confirm = new EventEmitter();
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
   }
 
   public deleteUser(id: number) {
+    this.spinner.show('delete-user-spinner-' + this.userId);
     this.userService.deleteUser(id).subscribe(
       success => {
         const successMessage = 'O ususário ' + this.username + ' foi excluído com sucesso!';
+        this.spinner.hide('delete-user-spinner-' + this.userId);
         this.closeModal();
         this.confirm.emit({message: successMessage});
       },
-      error => this.error = error
+      error => {
+        this.spinner.hide('delete-user-spinner-' + this.userId);
+        this.error = error;
+      }
     );
   }
 

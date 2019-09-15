@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
@@ -21,7 +22,8 @@ export class AddUserComponent implements OnInit {
   @ViewChild('userFormCreate', { static: true }) userFormCreate: NgForm;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -30,19 +32,23 @@ export class AddUserComponent implements OnInit {
 
   public addUser() {
     if (this.userFormCreate.form.valid) {
+      this.spinner.show('add-user-spinner');
       this.userService.addUser(this.user).subscribe(
         res => {
           const successMessage = 'Ususário criado com sucesso!';
+          this.spinner.hide('add-user-spinner');
           this.closeModal();
           this.confirm.emit({message: successMessage});
         },
         error => {
-          // ganbiarra temporária, navigate dont works, error.error is a array list?
+          // ganbiarra temporária, error.error is a array list?
           if (error.status === 500) {
             const successMessage = 'Ususário criado com sucesso!';
+            this.spinner.hide('add-user-spinner');
             this.closeModal();
             this.confirm.emit({message: successMessage});
           } else {
+            this.spinner.hide('add-user-spinner');
             this.error = error;
           }
         }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
@@ -22,26 +23,39 @@ export class UpdateUserComponent implements OnInit {
   @ViewChild('userFormUpdate', { static: true }) userFormUpdate: NgForm;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.user = new User();
+    this.spinner.show('update-user-spinner-' + this.userId);
     this.userService.findById(this.userId).subscribe(
-      res => this.user = res,
-      error => this.error = error // TODO
+      res => {
+        this.spinner.hide('update-user-spinner-' + this.userId);
+        this.user = res;
+      },
+      error => {
+        this.spinner.hide('update-user-spinner-' + this.userId);
+        this.error = error; // TODO
+      }
     );
   }
 
   public updateUser() {
     if (this.userFormUpdate.form.valid) {
+      this.spinner.show('update-user-spinner-' + this.userId);
       this.userService.updateUser(this.user).subscribe(
         success => {
           const successMessage = 'O ususário ' + this.username + ' foi atualizado com sucesso!';
+          this.spinner.hide('update-user-spinner-' + this.userId);
           this.closeModal();
           this.confirm.emit({message: successMessage});
         },
-        error => this.error = error
+        error => {
+          this.spinner.hide('update-user-spinner-' + this.userId);
+          this.error = error;
+        }
       );
     }
   }

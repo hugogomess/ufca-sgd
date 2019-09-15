@@ -2,6 +2,9 @@
   <div class="container col-md-4">
     <div class="container">
       <div class="card card-container">
+        <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade"
+        bdColor="rgba(240,240,240,0.8)" color="#0275d8">
+        </ngx-spinner>
         <img id="profile-img" class="profile-img-card" src="../../../../assets/images/ufca-logo.svg" />
         <form #userForm="ngForm" (ngSubmit)="login()">
           <span class="error" *ngIf="error">

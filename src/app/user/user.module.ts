@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 import { UserService } from './services';
@@ -19,7 +20,8 @@ import { UpdateUserComponent } from './components';
     CommonModule,
     FormsModule,
     RouterModule,
-    DataTablesModule
+    DataTablesModule,
+    NgxSpinnerModule
   ],
    exports: [],
    providers: [
