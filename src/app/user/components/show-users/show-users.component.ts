@@ -5,6 +5,7 @@ import { DataTableDirective } from 'angular-datatables';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
+import { ptBrDataTable } from '../../../utils';
 
 @Component({
   selector: 'app-show-users',
@@ -34,7 +35,8 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
       paging: true,
       pageLength: 10,
       stateSave: false,
-      retrieve: true
+      retrieve: true,
+      language: ptBrDataTable('usuário', 'usuários', 'M')
     };
     this.findAllUsers();
   }
