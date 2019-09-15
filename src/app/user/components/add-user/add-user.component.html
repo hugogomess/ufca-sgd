@@ -20,7 +20,8 @@
                 <div class="text-danger text-center form-group">
                     Os campos com asterisco (*) são obrigatórios!
                 </div>
-                <form #userFormCreate="ngForm" (ngSubmit)="addUser()">
+                <form #userFormCreate="ngForm" (ngSubmit)="addUser()" [matchValue]="['password', 'passwordConfirm']"
+                    id="add-user-form">
                     <div class="form-group row">
                         <label for="first_name" class="col-md-4 col-form-label text-md-right">
                             Nome <b class="text-danger">*</b>
@@ -52,10 +53,17 @@
                         </label>
                         <div class="col-md-6">
                             <input type="email" id="email" class="form-control" name="email"
-                                placeholder="E-mail do usuário" required [(ngModel)]="user.email" #email="ngModel">
+                                placeholder="E-mail do usuário" required
+                                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$" [(ngModel)]="user.email"
+                                #email="ngModel">
                             <div [hidden]="email.valid || email.pristine"
                                 class=" error-validation text-danger text-left">
-                                Este campo é obrigatório!
+                                <div class="error-validation" *ngIf="!!email.errors?.required">
+                                    Este campo é obrigatório!
+                                </div>
+                                <div class="error-validation" *ngIf="!!email.errors?.pattern">
+                                    E-Mail inválido!
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,10 +75,21 @@
                         <div class="col-md-6">
                             <input type="text" id="username" class="form-control" name="username"
                                 placeholder="Username do usuário" required [(ngModel)]="user.username"
-                                #username="ngModel">
+                                #username="ngModel" pattern="^[a-zA-Z0-9_.]+$" minlength="4" maxlength="16">
                             <div [hidden]="username.valid || username.pristine"
-                                class="text-left error-validation text-danger">
-                                Este campo é obrigatório!
+                                class="error-validation text-danger text-left">
+                                <div class="error-validation" *ngIf="!!username.errors?.required">
+                                    Este campo é obrigatório!
+                                </div>
+                                <div class="error-validation" *ngIf="!!username.errors?.pattern">
+                                    Nome de usuário inválido!
+                                </div>
+                                <div class="error-validation" *ngIf="!!username.errors?.minlength">
+                                    O username deve ter pelo menos 4 caracteres!
+                                </div>
+                                <div class="error-validation" *ngIf="!!username.errors?.maxlength">
+                                    O username deve ter no máximo 16 caracteres!
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,21 +103,21 @@
                                 <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_admin"
                                     id="is-admin" [ngModelOptions]="{standalone: true}">
                                 <label class="form-check-label" for="is-admin">
-                                    Administrador
+                                    &nbsp;Administrador
                                 </label>
                             </div>
                             <div class="form-check text-left">
                                 <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_demand_manager"
                                     id="is-demand-manager" [ngModelOptions]="{standalone: true}">
                                 <label class="form-check-label" for="is-demand-manager">
-                                    Gestor de Demandas
+                                    &nbsp;Gestor de Demandas
                                 </label>
                             </div>
                             <div class="form-check text-left">
                                 <input class="form-check-input" type="checkbox" [(ngModel)]="user.is_project_manager"
                                     id="is-project-manager" [ngModelOptions]="{standalone: true}">
                                 <label class="form-check-label" for="is-project-manager">
-                                    Gestor de Projetos
+                                    &nbsp;Gestor de Projetos
                                 </label>
                             </div>
                         </div>
@@ -110,16 +129,19 @@
                         </label>
                         <div class="col-md-6">
                             <input type="password" id="password" class="form-control" name="password"
-                                placeholder="Senha do usuário" required minlength="8" [(ngModel)]="user.password"
-                                #password="ngModel">
+                                placeholder="Senha do usuário" required minlength="8" maxlength="32"
+                                [(ngModel)]="user.password" #password="ngModel">
                             <div [hidden]="password.valid || password.pristine"
                                 class="text-left error-validation text-danger">
-                                <span *ngIf="!!password.errors?.required">
+                                <div class="error-validation" *ngIf="!!password.errors?.required">
                                     Este campo é obrigatório!
-                                </span>
-                                <span *ngIf="!!password.errors?.minlength">
-                                    A senha precisa ter pelo menos 8 caracteres!
-                                </span>
+                                </div>
+                                <div class="error-validation" *ngIf="!!password.errors?.minlength">
+                                    A senha deve ter pelo menos 8 caracteres!
+                                </div>
+                                <div class="error-validation" *ngIf="!!password.errors?.maxlength">
+                                    A senha deve ter no máximo 32 caracteres!
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -129,14 +151,17 @@
                             Confirmar senha <b class="text-danger">*</b>
                         </label>
                         <div class="col-md-6">
-                            <input type="password" id="passwordConfirm" class="form-control"
-                            name="passwordConfirm" placeholder="Repita a senha do usuário" required
-                            [(ngModel)]="passwordConfirm" #passwordConfirmText="ngModel">
+                            <input type="password" id="passwordConfirm" class="form-control" name="passwordConfirm"
+                                placeholder="Repita a senha do usuário" required [(ngModel)]="passwordConfirm"
+                                #passwordConfirmText="ngModel">
                             <div [hidden]="passwordConfirmText.valid || passwordConfirmText.pristine"
                                 class="text-left error-validation text-danger">
-                                <span *ngIf="!!passwordConfirmText.errors?.required">
+                                <div class="error-validation" *ngIf="!!passwordConfirmText.errors?.required">
                                     Este campo é obrigatório!
-                                </span>
+                                </div>
+                                <div class="error-validation" *ngIf="!!passwordConfirmText.errors?.matchValueError">
+                                    As senhas não são iguais!
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,7 +170,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" (click)="addUser()"
-                        [disabled]="!userFormCreate.form.valid">
+                        [disabled]="!userFormCreate.form.valid" form="add-user-form">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
                             title="Os campos com * são obrigatórios!" data-placement="left"
                             *ngIf="!userFormCreate.form.valid">

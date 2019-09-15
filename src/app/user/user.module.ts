@@ -12,10 +12,11 @@ import { ShowUsersComponent } from './components';
 import { DeleteUserComponent } from './components';
 import { ActiveUserComponent } from './components';
 import { UpdateUserComponent } from './components';
+import { MatchValueDirective } from './directives';
 
 
 @NgModule({
-  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent, ActiveUserComponent, UpdateUserComponent],
+  declarations: [AddUserComponent, ShowUsersComponent, DeleteUserComponent, ActiveUserComponent, UpdateUserComponent, MatchValueDirective],
   imports: [
     CommonModule,
     FormsModule,
