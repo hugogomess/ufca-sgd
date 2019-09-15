@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtService } from '../../services';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { User } from '../../models';
 
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private jwtService: JwtService,
     private router: Router,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -28,9 +30,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.userForm.form.valid) {
+      this.spinner.show();
       this.jwtService.login(this.user).subscribe(
-        success => this.router.navigate(['']),
-        error => this.error = error
+        success => {
+          this.spinner.hide();
+          this.router.navigate(['']);
+        },
+        error => {
+          this.spinner.hide();
+          this.error = error;
+        }
       );
     }
   }
