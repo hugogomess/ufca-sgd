@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { UserService } from '../../services';
 
@@ -16,20 +17,26 @@ export class ActiveUserComponent implements OnInit {
   @Output() confirm = new EventEmitter();
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
   }
 
   public activeUser(id: number) {
+    this.spinner.show('active-user-spinner-' + this.userId);
     this.userService.activeUser(id).subscribe(
       success => {
         const successMessage = 'O ususário ' + this.username + ' foi ativado com sucesso!';
+        this.spinner.hide('active-user-spinner-' + this.userId);
         this.closeModal();
         this.confirm.emit({message: successMessage});
       },
-      error => this.error = error
+      error => {
+        this.spinner.hide('active-user-spinner-' + this.userId);
+        this.error = error;
+      }
     );
   }
 

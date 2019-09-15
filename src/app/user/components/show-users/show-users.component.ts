@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { DataTableDirective } from 'angular-datatables';
 
 import { User } from '../../models';
 import { UserService } from '../../services';
-import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-show-users',
@@ -23,7 +24,8 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
   dtElement: DataTableDirective;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -42,13 +44,18 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
   }
 
   private findAllUsers() {
+    this.spinner.show('datatable-spinner');
     this.userService.findAll().subscribe(
       res => {
         this.users = res;
         this.render();
+        this.spinner.hide('datatable-spinner');
       },
       error => {
         this.error = error;
+        this.users = [];
+        this.render();
+        this.spinner.hide('datatable-spinner');
       }
     );
   }
@@ -68,9 +75,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
   render(): void {
     if (this.dtElement.dtInstance) {
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        // Destroy the table first
         dtInstance.destroy();
-        // Call the dtTrigger to rerender again
         this.dtTrigger.next();
       });
     } else {

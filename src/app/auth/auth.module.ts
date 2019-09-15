@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { LoginComponent } from './components';
 
@@ -13,7 +14,8 @@ import { LoginComponent } from './components';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   exports: [
     LoginComponent
