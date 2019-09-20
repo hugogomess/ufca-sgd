@@ -11,16 +11,16 @@
             {{ error?.error | json }}
           </span>
           <input type="text" class="form-control" placeholder="Nome de usuário" required autofocus
-            [(ngModel)]="user.username" name="username" #username="ngModel">
+            [(ngModel)]="user.username" name="username" id="username" #username="ngModel">
           <div [hidden]="username.valid || username.pristine" class="text-danger">
             Este campo é obrigatório!
           </div>
-          <input type="password" class="form-control" placeholder="Senha" required name="password"
+          <input type="password" class="form-control" id="password" placeholder="Senha" required name="password"
             [(ngModel)]="user.password" #password="ngModel">
           <div [hidden]="password.valid || password.pristine" class="text-danger">
             Este campo é obrigatório!
           </div>
-          <input class="btn btn-primary btn-block" [disabled]="!userForm.form.valid" (click)="login()" value="Entrar"
+          <input class="btn btn-primary btn-block" name="btn-login" id="btn-login" [disabled]="!userForm.form.valid" (click)="login()" value="Entrar"
             type="submit" />
         </form>
         <a href="#">
