@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components';
-import { HomeComponent } from './components';
+import { HomeComponent, NotFoundComponent } from './components';
+
 
 
 @NgModule({
-declarations: [HeaderComponent, HomeComponent, ],
+declarations: [HeaderComponent, HomeComponent, NotFoundComponent, ],
   imports: [
     CommonModule,
     RouterModule
