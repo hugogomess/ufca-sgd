@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components';
 import { HomeComponent, NotFoundComponent } from './components';
+import { PermissionDenidComponent } from './components/permission-denid/permission-denid.component';
 
 
 
 @NgModule({
-declarations: [HeaderComponent, HomeComponent, NotFoundComponent, ],
+declarations: [HeaderComponent, HomeComponent, NotFoundComponent, PermissionDenidComponent, ],
   imports: [
     CommonModule,
     RouterModule
