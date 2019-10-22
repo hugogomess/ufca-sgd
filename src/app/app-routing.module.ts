@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CommonModule, } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AdminLayoutRoutes } from './layouts/admin-layout/admin-layout.routing';
 
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
-import { AdminRoutes } from './admin';
 import { StaticsRoutes } from './statics';
 
 
@@ -11,12 +14,14 @@ const routes: Routes = [
   ...StaticsRoutes,
   ...AuthRoutes,
   ...UserRoutes,
-  ...AdminRoutes
+  ...AdminLayoutRoutes,
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    CommonModule,
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
