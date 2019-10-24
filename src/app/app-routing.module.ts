@@ -6,12 +6,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
 import { StaticsRoutes } from './statics';
+import { AdminRoutes} from './admin';
 
 
 const routes: Routes = [
   ...StaticsRoutes,
   ...AuthRoutes,
   ...UserRoutes,
+  ...AdminRoutes,
 ];
 
 @NgModule({
