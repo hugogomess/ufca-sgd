@@ -13,7 +13,6 @@ import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { environment } from '../environments/environment';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -22,7 +21,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
