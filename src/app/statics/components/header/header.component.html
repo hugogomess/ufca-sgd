@@ -7,8 +7,7 @@
     </li>
 
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -30,8 +29,7 @@
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ml-auto">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Pesquisar Demandas" aria-label="Search"
-                    aria-describedby="basic-addon2">
+                <input type="text" class="form-control" placeholder="Pesquisar Demandas" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search"></i>
@@ -42,8 +40,7 @@
         <!-- Nav Item - User Information -->
         <ul id="NavItem" class="navbar-nav user-button">
             <li [hidden]="jwtService.isLoggedOut" class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline">{{user.username}}</span>
                     <i class="fas fa-user fa-lg"></i>
                 </a>
