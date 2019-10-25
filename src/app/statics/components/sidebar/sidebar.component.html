@@ -1,9 +1,7 @@
 <div class="logo">
     <a href="#" class="simple-text">
-        <div class="logo-img">
-            <img src="../../../../assets/images/ufca-logo.png" />
-        </div>
-        UFCA
+        <img id="ufc-logo" src="../../../../assets/images/ufca-logo.png" />
+
     </a>
 </div>
 <div class="sidebar-wrapper">
@@ -19,34 +17,6 @@
             </div>
           </span>
         </form>
-
-        <ul class="nav navbar-nav nav-mobile-menu">
-            <li class="nav-item">
-                <a>
-                    <i class="material-icons">dashboard</i>
-                    <p>
-                        <span class="d-lg-none d-md-block">Stats</span>
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">notifications</i>
-                    <span class="notification">5</span>
-                    <p>
-                        <span class="d-lg-none d-md-block">Some Actions</span>
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a>
-                    <i class="material-icons">person</i>
-                    <p>
-                        <span class="d-lg-none d-md-block">Account</span>
-                    </p>
-                </a>
-            </li>
-        </ul>
     </div>
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
