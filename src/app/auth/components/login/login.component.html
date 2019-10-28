@@ -1,35 +1,36 @@
-<div class="row justify-content-center">
-  <div class="container col-md-4" id="login-container">
-    <div class="container">
-      <div class="card card-container">
-        <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade"
-        bdColor="rgba(240,240,240,0.8)" color="#0275d8">
-        </ngx-spinner>
-        <img id="profile-img" class="profile-img-card" src="../../../../assets/images/ufca-logo.svg" />
-        <form #userForm="ngForm" (ngSubmit)="login()">
-          <span class="error" *ngIf="error">
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="container col-md-4" id="login-container">
+                <div class="container">
+                    <div class="card card-container">
+                        <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade" bdColor="rgba(240,240,240,0.8)" color="#0275d8">
+                        </ngx-spinner>
+                        <img id="profile-img" class="profile-img-card" src="../../../../assets/images/ufca-logo.svg" />
+                        <form #userForm="ngForm" (ngSubmit)="login()">
+                            <span class="error" *ngIf="error">
             {{ error?.error | json }}
           </span>
-          <input type="text" class="form-control" placeholder="Nome de usuário" required autofocus
-            [(ngModel)]="user.username" name="username" id="username" #username="ngModel">
-          <div [hidden]="username.valid || username.pristine" class="text-danger">
-            Este campo é obrigatório!
-          </div>
-          <input type="password" class="form-control" id="password" placeholder="Senha" required name="password"
-            [(ngModel)]="user.password" #password="ngModel">
-          <div [hidden]="password.valid || password.pristine" class="text-danger">
-            Este campo é obrigatório!
-          </div>
-          <input class="btn btn-primary btn-block" name="btn-login" id="btn-login" [disabled]="!userForm.form.valid" (click)="login()" value="Entrar"
-            type="submit" />
-        </form>
-        <a href="#">
+                            <input type="text" class="form-control" placeholder="Nome de usuário" required autofocus [(ngModel)]="user.username" name="username" id="username" #username="ngModel">
+                            <div [hidden]="username.valid || username.pristine" class="text-danger">
+                                Este campo é obrigatório!
+                            </div>
+                            <input type="password" class="form-control" id="password" placeholder="Senha" required name="password" [(ngModel)]="user.password" #password="ngModel">
+                            <div [hidden]="password.valid || password.pristine" class="text-danger">
+                                Este campo é obrigatório!
+                            </div>
+                            <input class="btn btn-primary btn-block" name="btn-login" id="btn-login" [disabled]="!userForm.form.valid" (click)="login()" value="Entrar" type="submit" />
+                        </form>
+                        <a href="#">
           Esqueceu a senha?
         </a>
-        <a target="_blank" href="https://atendimento.ufca.edu.br/">
+                        <a target="_blank" href="https://atendimento.ufca.edu.br/">
           Não tem um usuário?
         </a>
-      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

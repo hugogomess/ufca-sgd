@@ -8,18 +8,18 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent {
 
-  showHead: boolean;
+  showStatics: boolean;
 
   constructor(private router: Router) {
 
-    this.showHead = true;
+    this.showStatics = true;
 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event.url === '/login') {
-          this.showHead = false;
+        if (event.url === '/' || event.url === '/login') {
+          this.showStatics = false;
         } else {
-          this.showHead = true;
+          this.showStatics = true;
         }
       }
     });

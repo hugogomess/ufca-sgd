@@ -4,17 +4,29 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components';
 import { HomeComponent } from './components';
+import { NavbarComponent } from './components';
+import { SidebarComponent } from './components';
+import { FooterComponent } from './components';
 
 
 @NgModule({
-declarations: [HeaderComponent, HomeComponent, ],
+  declarations: [
+    HeaderComponent,
+    HomeComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent
+  ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent
   ]
 })
 export class StaticsModule { }

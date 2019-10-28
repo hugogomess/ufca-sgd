@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand">{{getTitle()}}</a>
+        </div>
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form class="navbar-form">
+                <div class="input-group no-border">
+                    <input type="text" value="" class="form-control" placeholder="Search...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                </div>
+            </form>
+            <ul class="navbar-nav">
+
+                <li [hidden]="jwtService.isLoggedOut" class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline">{{user.username}}</span>
+                        <i class="fas fa-user fa-lg"></i>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" routerLink="/">
+                            <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> Dados Pessoais
+                        </a>
+                        <a class="dropdown-item" routerLink="/admin">
+                            <i class="fas fa-chart-area fa-sm fa-fw mr-2 text-gray-400"></i> Painel Administrativo
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/" (click)="jwtService.logout()">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item" [hidden]="jwtService.isLogged" routerLink="/login">
+                    <button class="btn btn-primary btn-login">
+                        <b>Login</b>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
