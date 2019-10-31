@@ -1,5 +1,5 @@
 <div class="logo">
-    <a href="#" class="simple-text">
+    <a routerLink="/" class="simple-text">
         <img id="ufc-logo" src="../../../../assets/images/ufca-logo.png" />
 
     </a>
@@ -22,7 +22,7 @@
         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             <a class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
+                <p><b>{{menuItem.title}}</b></p>
             </a>
         </li>
     </ul>
