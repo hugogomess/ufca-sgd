@@ -7,7 +7,10 @@ import { HomeComponent } from './components';
 import { NavbarComponent } from './components';
 import { SidebarComponent } from './components';
 import { FooterComponent } from './components';
-
+import { PermissionDenidComponent } from './components';
+import { ServerErrorComponent } from './components';
+import { UnavailbleServiceComponent } from './components';
+import { NotFoundComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,11 @@ import { FooterComponent } from './components';
     HomeComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    NotFoundComponent,
+    PermissionDenidComponent,
+    ServerErrorComponent,
+    UnavailbleServiceComponent,
   ],
   imports: [
     CommonModule,
