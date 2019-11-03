@@ -4,6 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule
+} from '@angular/material';
 
 import { LoginComponent } from './components';
 
@@ -15,7 +23,13 @@ import { LoginComponent } from './components';
     HttpClientModule,
     RouterModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
   exports: [
     LoginComponent

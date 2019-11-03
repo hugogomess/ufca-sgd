@@ -36,3 +36,8 @@ ul#NavItem {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.dropdown-menu > a:focus,
+.dropdown-menu > a:hover {
+  background: orange;
+}

@@ -4,6 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule
+} from '@angular/material';
 
 
 import { UserService } from './services';
@@ -22,11 +30,17 @@ import { MatchValueDirective } from './directives';
     FormsModule,
     RouterModule,
     DataTablesModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
-   exports: [],
-   providers: [
-     UserService
-   ]
+  exports: [],
+  providers: [
+    UserService
+  ]
 })
 export class UserModule { }
