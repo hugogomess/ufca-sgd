@@ -1,13 +1,13 @@
-<ngx-loading-bar [includeSpinner]="false"></ngx-loading-bar>
+<ngx-loading-bar [includeSpinner]="false" color="orange"></ngx-loading-bar>
 
 <div class="wrapper">
-    <div *ngIf="showStatics" class="sidebar" data-color="purple">
+    <div *ngIf="showStatics" class="sidebar" data-color="orange">
         <app-sidebar></app-sidebar>
-        <div class="sidebar-background"></div>
+        <div class="sidebar-background" style="background-image: url(../../../assets/images/sidebar-3.jpg)"></div>
     </div>
     <div [ngClass]="{'main-panel': showStatics}">
         <app-navbar *ngIf="showStatics"></app-navbar>
-        <app-header [hidden]="showStatics"></app-header>
+        <app-header [hidden]="showStatics" *ngIf="showHeader"></app-header>
         <router-outlet></router-outlet>
         <app-footer *ngIf="showStatics"></app-footer>
     </div>
