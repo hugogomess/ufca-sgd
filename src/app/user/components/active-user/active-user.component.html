@@ -6,7 +6,7 @@
             bdColor="rgba(240,240,240,0.8)" color="#0275d8" [name]="'active-user-spinner-' + userId">
             </ngx-spinner>
             <div class="modal-header">
-                <h5 class="modal-title">Ativar Usuário</h5>
+                <h4 class="modal-title"><b>Ativar Usuário</b></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -18,13 +18,14 @@
                     </button>
                     <p class="text-center">{{ error.error | json }}</p>
                 </div>
-                <p><strong>Você tem certeza que deseja ativar o usuário <span class="text-primary">"{{username}}"</span>
+                <p><strong>Você tem certeza que deseja ativar o usuário <span class="text-info">"{{username}}"</span>
                         ?</strong></p>
                 <p class="modal-description">Ao ativar este usuário ele poderá se logar no sistema novamente.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="activeUser(userId)">Ativar</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success" (click)="activeUser(userId)">Ativar</button>
             </div>
         </div>
     </div>

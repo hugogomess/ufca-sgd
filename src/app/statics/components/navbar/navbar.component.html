@@ -10,18 +10,10 @@
                 <span class="navbar-toggler-icon icon-bar"></span>
             </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form class="navbar-form">
-                <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                </div>
-            </form>
+            
             <ul class="navbar-nav">
 
-                <li [hidden]="jwtService.isLoggedOut" class="nav-item dropdown no-arrow">
+                <li  *ngIf="jwtService.isLogged" class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline">{{user.username}}</span>
                         <i class="fas fa-user fa-lg"></i>
@@ -41,7 +33,7 @@
                     </div>
                 </li>
                 <li class="nav-item" [hidden]="jwtService.isLogged" routerLink="/login">
-                    <button class="btn btn-primary btn-login">
+                    <button class="btn btn-warning btn-login">
                         <b>Login</b>
                     </button>
                 </li>

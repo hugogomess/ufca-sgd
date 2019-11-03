@@ -1,56 +1,61 @@
-<!-- Breadcrumbs-->
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="container col-md-12">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h4> Gerenciar Usuários</h4>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">person</i>
+                        </div>
+                        <h4 class="card-title">Gerenciar Usuários</h4>
                     </div>
                     <div class="card-body">
                         <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="close" (click)="closeAlert()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <b>{{successMessage}}</b>
                         </div>
                         <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                            <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <b>{{error}}</b>
                             <br>
                             <b>{{error.error | json}}</b>
                         </div>
-                        <div class="row" id="filters-body">
-                            <div class="col-md-8">
-                                Filtros
-                            </div>
+                        <div class="row">
+                            <div class="col-md-8"></div>
                             <div class="col-md-4 text-right">
 
                                 <app-add-user (confirm)="setSuccessAlert($event.message)" [id]="'add-user-modal'">
                                 </app-add-user>
 
-                                <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#add-user-modal'">
-                            <i class="fas fa-plus"></i><b> Adicionar Usuário</b>
-                        </button>
+                                <button class="btn btn-success" data-toggle="modal"
+                                    [attr.data-target]="'#add-user-modal'">
+                                    <i class="fas fa-plus"></i><b> Adicionar Usuário</b>
+                                </button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade" bdColor="rgba(240,240,240,0.8)" size="medium" color="#0275d8" name="datatable-spinner">
+                                <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade"
+                                    bdColor="rgba(240,240,240,0.8)" size="medium" color="#0275d8"
+                                    name="datatable-spinner">
                                 </ngx-spinner>
-                                <div class="table-responsive col-md-13">
-                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-striped col-md-13" width="100%" cellspacing="0">
-                                        <thead>
+                                <div class="table-responsive col-md-12">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                        class="table table-striped" width="100%" cellspacing="0">
+                                        <thead class="">
                                             <tr>
-                                                <th>Nome</th>
-                                                <th>Sobrenome</th>
-                                                <th>E-mail</th>
-                                                <th>Username</th>
-                                                <th>Permissões</th>
-                                                <th>Status</th>
-                                                <th>Ações</th>
+                                                <th><b>Nome</b></th>
+                                                <th><b>Sobrenome</b></th>
+                                                <th><b>E-mail</b></th>
+                                                <th><b>Username</b></th>
+                                                <th><b>Permissões</b></th>
+                                                <th><b>Status</b></th>
+                                                <th><b>Ações</b></th>
                                             </tr>
                                         </thead>
                                         <tbody *ngIf="users.length != 0">
@@ -61,44 +66,57 @@
                                                 <td>{{user.username}}</td>
                                                 <td>
                                                     <span *ngIf="user.is_admin">
-                                                Administrador<span *ngIf="user.is_demand_manager ||
+                                                        Administrador<span *ngIf="user.is_demand_manager ||
                                                 user.is_project_manager">,</span>
                                                     </span>
                                                     <span *ngIf="user.is_demand_manager">
-                                                Gestor de Demandas<span *ngIf="user.is_project_manager">,</span>
+                                                        Gestor de Demandas<span *ngIf="user.is_project_manager">,</span>
                                                     </span>
                                                     <span *ngIf="user.is_project_manager">
-                                                Gestor de Projetos
-                                            </span>
+                                                        Gestor de Projetos
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     <span *ngIf="user.is_active">
-                                                Ativo
-                                            </span>
+                                                        Ativo
+                                                    </span>
                                                     <span class="deleted" *ngIf="!user.is_active">
-                                                <app-active-user [userId]="user.id" [username]="user.username"
-                                                    (confirm)="setSuccessAlert($event.message)">
-                                                </app-active-user>
+                                                        <app-active-user [userId]="user.id" [username]="user.username"
+                                                            (confirm)="setSuccessAlert($event.message)">
+                                                        </app-active-user>
 
-                                                <a href="#" class="text-danger" data-toggle="modal"
-                                                    [attr.data-target]="'#active-'.concat(user.id)">Excluído</a>
-                                            </span>
+                                                        <a href="#" class="text-danger" data-toggle="modal" matTooltip="Usuário excluído, clique para ativa-lo"
+                                                        [matTooltipPosition]="'above'"
+                                                            [attr.data-target]="'#active-'.concat(user.id)">Excluído</a>
+                                                    </span>
                                                 </td>
                                                 <td>
 
-                                                    <app-delete-user [userId]="user.id" [username]="user.username" (confirm)="setSuccessAlert($event.message)">
+                                                    <app-delete-user [userId]="user.id" [username]="user.username"
+                                                        (confirm)="setSuccessAlert($event.message)">
                                                     </app-delete-user>
 
-                                                    <app-update-user [userId]="user.id" [username]="user.username" (confirm)="setSuccessAlert($event.message)">
+                                                    <app-update-user [userId]="user.id" [username]="user.username"
+                                                        (confirm)="setSuccessAlert($event.message)">
                                                     </app-update-user>
 
-                                                    <button class="btn btn-primary btn-sm btn-action" data-toggle="modal" [attr.data-target]="'#update-'.concat(user.id)">
-                                                <i class="fa fa-pen"></i>
-                                            </button>
+                                                    <button mat-raised-button type="button" matTooltip="Editar Usuário"
+                                                        [matTooltipPosition]="'above'"
+                                                        class="btn btn-info btn-link btn-sm btn-just-icon"
+                                                        data-toggle="modal"
+                                                        [attr.data-target]="'#update-'.concat(user.id)">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
 
-                                                    <button [disabled]="!user.is_active" class="btn btn-danger btn-sm btn-action" data-toggle="modal" [attr.data-target]="'#delete-'.concat(user.id)">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                                    <button mat-raised-button type="button" matTooltip="Excluir Usuário"
+                                                        [matTooltipPosition]="'above'"
+                                                        class="btn btn-danger btn-link btn-sm btn-just-icon"
+                                                        data-toggle="modal"
+                                                        [attr.data-target]="'#delete-'.concat(user.id)"
+                                                        [disabled]="!user.is_active">
+                                                        <i class="material-icons"
+                                                        >close</i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
