@@ -3,22 +3,37 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components';
-import { HomeComponent, NotFoundComponent } from './components';
-import { PermissionDenidComponent } from './components/permission-denid/permission-denid.component';
-import { ServerErrorComponent } from './components/server-error/server-error.component';
-import { UnavailbleServiceComponent } from './components/unavailble-service/unavailble-service.component';
-
-
+import { HomeComponent } from './components';
+import { NavbarComponent } from './components';
+import { SidebarComponent } from './components';
+import { FooterComponent } from './components';
+import { PermissionDenidComponent } from './components';
+import { ServerErrorComponent } from './components';
+import { UnavailbleServiceComponent } from './components';
+import { NotFoundComponent } from './components';
 
 @NgModule({
-declarations: [HeaderComponent, HomeComponent, NotFoundComponent, PermissionDenidComponent, ServerErrorComponent, UnavailbleServiceComponent, ],
+  declarations: [
+    HeaderComponent,
+    HomeComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    NotFoundComponent,
+    PermissionDenidComponent,
+    ServerErrorComponent,
+    UnavailbleServiceComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent
   ]
 })
 export class StaticsModule { }

@@ -6,7 +6,7 @@
             bdColor="rgba(240,240,240,0.8)" color="#0275d8" [name]="'delete-user-spinner-' + userId">
             </ngx-spinner>
             <div class="modal-header">
-                <h5 class="modal-title">Deletar Usuário</h5>
+                <h4 class="modal-title"><b>Deletar Usuário</b></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,12 +19,13 @@
                     <p class="text-center">{{ error.error | json }}</p>
                 </div>
                 <p><strong>Você tem certeza que deseja deletar o usuário <span
-                            class="text-primary">"{{username}}"</span>
+                            class="text-info">"{{username}}"</span>
                         ?</strong></p>
                 <p class="modal-description">Você poderá desfazer esta operação posteriormente.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                &nbsp;&nbsp;
                 <button type="button" class="btn btn-danger" (click)="deleteUser(userId)">Deletar</button>
             </div>
         </div>
