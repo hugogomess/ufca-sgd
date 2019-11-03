@@ -8,12 +8,15 @@ import { UserRoutes } from './user';
 import { StaticsRoutes } from './statics';
 import { AdminRoutes} from './admin';
 
+import { NotFoundComponent } from './statics/components' 
+
 
 const routes: Routes = [
   ...StaticsRoutes,
   ...AuthRoutes,
   ...UserRoutes,
   ...AdminRoutes,
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
