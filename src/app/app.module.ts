@@ -13,6 +13,7 @@ import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { AdminModule } from './admin';
+import { DemandModule } from './demand';
 import { environment } from '../environments/environment';
 
 export function tokenGetter() {
@@ -43,7 +44,8 @@ export function tokenGetter() {
     ReactiveFormsModule,
     LoadingBarModule,
     LoadingBarRouterModule,
-    AdminModule
+    AdminModule,
+    DemandModule
   ],
   providers: [],
   bootstrap: [AppComponent]

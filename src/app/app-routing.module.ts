@@ -6,7 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
 import { StaticsRoutes } from './statics';
-import { AdminRoutes} from './admin';
+import { AdminRoutes } from './admin';
+import { DemandRoutes } from './demand';
 
 import { NotFoundComponent } from './statics/components' 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   ...AuthRoutes,
   ...UserRoutes,
   ...AdminRoutes,
+  ...DemandRoutes,
   { path: '**', component: NotFoundComponent },
 ];
 
