@@ -18,10 +18,11 @@ import { DemandService } from './services';
 import { AddDemandComponent } from './components';
 import { ListDemandsComponent } from './components';
 import { UpdateDemandComponent } from './components';
+import { ChangeStatusComponent } from './components';
 
 
 @NgModule({
-  declarations: [AddDemandComponent, ListDemandsComponent, UpdateDemandComponent],
+  declarations: [AddDemandComponent, ListDemandsComponent, UpdateDemandComponent, ChangeStatusComponent],
   imports: [
     CommonModule,
     FormsModule,

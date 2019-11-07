@@ -1,0 +1,49 @@
+<div class="modal fade" role="dialog" [id]="'change-status-' + demandId" tabindex="-1" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade" bdColor="rgba(240,240,240,0.8)"
+                color="#0275d8" [name]="'change-status-spinner-' + demandId">
+            </ngx-spinner>
+            <div class="modal-header">
+                <h4 class="modal-title"><b>Alterar Status da Demanda</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="error" class="form-group alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="text-center">{{ error.error | json }}</p>
+                </div>
+
+                <form #demandChangeStatusForm="ngForm" (ngSubmit)="changeStatus()" id="change-status-form">
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h4>Status da Demanda</h4>
+                            <mat-form-field>
+                                <mat-label>Selecione o Status da Demanda</mat-label>
+                                <mat-select disableOptionCentering required [(ngModel)]="demand.status" name="status">
+                                    <mat-option *ngFor="let status of statuses" [value]="status" >
+                                        {{status}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                &nbsp;&nbsp;
+                <button type="submit" class="btn btn-success" (click)="changeStatus()"
+                    [disabled]="!demandChangeStatusForm.form.valid" form="change-status-form">
+                    <b>Alterar Status</b>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

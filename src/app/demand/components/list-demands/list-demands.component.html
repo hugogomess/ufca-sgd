@@ -64,31 +64,32 @@
                                                 <td>{{demand.requester}}</td>
                                                 <td>{{demand.origin}}</td>
                                                 <td>
-                                                    <button *ngIf="demand.status == 'ABERTA'" mat-raised-button
-                                                        type="button" [disabled]="true" matTooltip="Demanda Aberta"
+                                                    <span *ngIf="demand.status == 'ABERTA'" matTooltip="Demanda Aberta"
                                                         [matTooltipPosition]="'above'"
-                                                        class="btn btn-success btn-link btn-sm">
+                                                        class="badge badge-pill badge-success">
                                                         ABERTA
-                                                    </button>
+                                                    </span>
 
-                                                    <button *ngIf="demand.status == 'EM ANDAMENTO'" mat-raised-button
-                                                        type="button" [disabled]="true"
+                                                    <span *ngIf="demand.status == 'EM ANDAMENTO'"
                                                         matTooltip="Demanda Em Andamento" [matTooltipPosition]="'above'"
-                                                        class="btn btn-warning btn-link btn-sm">
+                                                        class="badge badge-pill badge-warning">
                                                         EM ANDAMENTO
-                                                    </button>
+                                                    </span>
 
-                                                    <button *ngIf="demand.status == 'FECHADA'" mat-raised-button
-                                                        type="button" [disabled]="true" matTooltip="Demanda Finalizada"
-                                                        [matTooltipPosition]="'above'"
-                                                        class="btn btn-secondary btn-link btn-sm">
+                                                    <span *ngIf="demand.status == 'FECHADA'"
+                                                        matTooltip="Demanda Finalizada" [matTooltipPosition]="'above'"
+                                                        class="badge badge-pill badge-secondary">
                                                         FECHADA
-                                                    </button>
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     <app-update-demand [demandId]="demand.id" [demandName]="demand.name"
                                                         (confirm)="setSuccessAlert($event.message)">
                                                     </app-update-demand>
+
+                                                    <app-change-status [demandId]="demand.id" [demandName]="demand.name"
+                                                        (confirm)="setSuccessAlert($event.message)">
+                                                    </app-change-status>
 
                                                     <button mat-raised-button type="button" matTooltip="Editar Demanda"
                                                         [matTooltipPosition]="'above'"
@@ -96,6 +97,14 @@
                                                         data-toggle="modal"
                                                         [attr.data-target]="'#update-'.concat(demand.id)">
                                                         <i class="material-icons">edit</i>
+                                                    </button>
+
+                                                    <button mat-raised-button type="button" matTooltip="Alterar Status da Demanda"
+                                                        [matTooltipPosition]="'above'"
+                                                        class="btn btn-info btn-link btn-sm btn-just-icon"
+                                                        data-toggle="modal"
+                                                        [attr.data-target]="'#change-status-'.concat(demand.id)">
+                                                        <i class="material-icons">cached</i>
                                                     </button>
                                                 </td>
                                             </tr>
