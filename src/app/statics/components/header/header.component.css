@@ -1,11 +1,11 @@
-#ufca-logo {
+/* #ufca-logo {
     width: 140px;
     height: 75px;
 }
 
 
 /*Formatação menu*/
-
+/*
 ul#menus {
     list-style: none;
     text-transform: uppercase;
@@ -22,6 +22,7 @@ ul#menus li {
 
 /*Formatação User Information*/
 
+/*
 ul#NavItem {
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,4 +41,27 @@ ul#NavItem {
 .dropdown-menu > a:focus,
 .dropdown-menu > a:hover {
   background: orange;
+} 
+
+*/
+
+
+.navbar {
+  z-index: 1040;
+}
+
+.side-nav {
+  margin-top: 49px !important;
+}
+
+.double-nav .breadcrumb-dn p {
+  color: #fff;
+}
+
+#breakline {
+    height: 100px;
+}
+
+.btn-login {
+  margin-right: 20px;
 }
