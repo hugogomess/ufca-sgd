@@ -31,7 +31,7 @@ export class ListDemandsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dtOptions = {
-      order: [],
+      order: [[ 4, "desc" ]],
       paging: true,
       pageLength: 10,
       stateSave: false,

@@ -6,5 +6,7 @@ export class Demand {
         public origin?: string,
         public status?: string,
         public id?: number,
+        public created_at?: Date,
+        public updated_at?: Date
     ) {}
 }

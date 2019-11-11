@@ -8,26 +8,27 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent {
 
-  showStatics: boolean;
-  showHeader: boolean;
+  isAdminPanel: boolean;
+  isLoginPage: boolean;
 
   constructor(private router: Router) {
 
-    this.showStatics = true;
-    this.showHeader = true;
+    this.isAdminPanel = false;
 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event.url === '/') {
-          this.showStatics = false;
-          this.showHeader = true;
+        if (event.url === '/admin' ||
+        event.url === '/admin/usuarios' ||
+        event.url === '/admin/demandas' ||
+        event.url === '/admin/matrizes-gut' ||
+        event.url === '/admin/termos-de-abertura') {
+          this.isAdminPanel = true;
         } else if (event.url === '/login') {
-          this.showStatics = false;
-          this.showHeader = false;
-        } 
-        else {
-          this.showStatics = true;
-          this.showHeader = false;
+          this.isAdminPanel = false;
+          this.isLoginPage = true;
+        } else {
+          this.isAdminPanel = false;
+          this.isLoginPage = false;
         }
       }
     });

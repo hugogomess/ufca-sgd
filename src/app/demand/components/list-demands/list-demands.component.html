@@ -53,6 +53,7 @@
                                                 <th><b>Descrição</b></th>
                                                 <th><b>Requisitante</b></th>
                                                 <th><b>Origem</b></th>
+                                                <th><b>Data de Criação</b></th>
                                                 <th><b>Status</b></th>
                                                 <th><b>Ações</b></th>
                                             </tr>
@@ -63,6 +64,9 @@
                                                 <td>{{demand.description}}</td>
                                                 <td>{{demand.requester}}</td>
                                                 <td>{{demand.origin}}</td>
+                                                <td>
+                                                    {{demand.created_at | date: 'dd/MM/yyyy'}}
+                                                </td>
                                                 <td>
                                                     <span *ngIf="demand.status == 'ABERTA'" matTooltip="Demanda Aberta"
                                                         [matTooltipPosition]="'above'"
@@ -99,7 +103,8 @@
                                                         <i class="material-icons">edit</i>
                                                     </button>
 
-                                                    <button mat-raised-button type="button" matTooltip="Alterar Status da Demanda"
+                                                    <button mat-raised-button type="button"
+                                                        matTooltip="Alterar Status da Demanda"
                                                         [matTooltipPosition]="'above'"
                                                         class="btn btn-info btn-link btn-sm btn-just-icon"
                                                         data-toggle="modal"

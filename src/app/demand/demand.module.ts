@@ -20,6 +20,7 @@ import { ListDemandsComponent } from './components';
 import { UpdateDemandComponent } from './components';
 import { ChangeStatusComponent } from './components';
 import { HomeComponent } from './components';
+import { DemandPageComponent } from './components';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { HomeComponent } from './components';
     UpdateDemandComponent,
     ChangeStatusComponent,
     HomeComponent,
+    DemandPageComponent,
   ],
   imports: [
     CommonModule,
