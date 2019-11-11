@@ -1,6 +1,14 @@
-<ngx-loading-bar [includeSpinner]="false"></ngx-loading-bar>
-<app-header *ngIf="showHead"></app-header>
-<br>
-<div class="container-fluid">
-    <router-outlet></router-outlet>
+<ngx-loading-bar [includeSpinner]="false" color="orange"></ngx-loading-bar>
+
+<div class="wrapper">
+    <div *ngIf="isAdminPanel" class="sidebar" data-color="orange">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(../../../assets/images/sidebar-3.jpg)"></div>
+    </div>
+    <div [ngClass]="{'main-panel': isAdminPanel}">
+        <app-navbar *ngIf="isAdminPanel"></app-navbar>
+        <app-header *ngIf="!isAdminPanel && !isLoginPage"></app-header>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
 </div>

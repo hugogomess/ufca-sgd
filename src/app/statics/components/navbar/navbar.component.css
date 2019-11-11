@@ -1,0 +1,4 @@
+.dropdown-menu > a:focus,
+.dropdown-menu > a:hover {
+  background: orange;
+}

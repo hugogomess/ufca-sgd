@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
@@ -11,8 +12,9 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
-import { environment } from '../environments/environment';
 import { AdminModule } from './admin';
+import { DemandModule } from './demand';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -20,14 +22,14 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
-    AdminModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,
@@ -39,8 +41,11 @@ export function tokenGetter() {
     StaticsModule,
     UserModule,
     FormsModule,
+    ReactiveFormsModule,
     LoadingBarModule,
-    LoadingBarRouterModule
+    LoadingBarRouterModule,
+    AdminModule,
+    DemandModule
   ],
   providers: [],
   bootstrap: [AppComponent]

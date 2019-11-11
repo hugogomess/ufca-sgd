@@ -1,1 +1,1 @@
-export * from './admin-panel';
+export * from './dashboard';

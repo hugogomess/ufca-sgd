@@ -1,0 +1,72 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div id="spinner-div" *ngIf="!error && !demand">
+                        <ngx-spinner id="spinner" [fullScreen]="false" type="ball-spin-clockwise-fade"
+                            bdColor="rgba(240,240,240,0)" size="medium" color="#0275d8" name="demand-spinner">
+                        </ngx-spinner>
+                    </div>
+
+                    <div *ngIf="error">
+                        <div class="page-wrap d-flex flex-row align-items-center">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12 text-center">
+                                        <span class="display-1 d-block">Desculpe!</span>
+                                        <div class="mb-4 lead">Ocorreu um erro ao acessar essa demanda.
+                                        </div>
+                                        <a [routerLink]="['']" routerLinkActive="router-link-active"
+                                            class="btn btn-link"> <i class="fas fa-home"></i> Voltar à página
+                                            inicial</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!error && demand">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{demand.name}}</h5>
+                                <p class="card-text"><b>Status: </b>
+                                    <span *ngIf="demand.status == 'ABERTA'" class="badge badge-success">
+                                        ABERTA
+                                    </span>
+
+                                    <span *ngIf="demand.status == 'EM ANDAMENTO'" class="badge badge-warning">
+                                        EM ANDAMENTO
+                                    </span>
+
+                                    <span *ngIf="demand.status == 'FECHADA'" class="badge badge-secondary">
+                                        FECHADA
+                                    </span>
+
+                                    <br />
+                                    <b>Requisitante: </b>{{demand.requester}}
+                                    <br />
+                                    <b>Data de Criação: </b>{{demand.created_at | date: 'dd/MM/yyyy'}}
+                                    <br />
+                                    <b>Origem: </b>{{demand.origin}}
+                                    <br />
+                                    <b>Descição: </b>{{demand.description}}
+                                </p>
+                                <p class="card-text"></p>
+                                <p class="card-text">
+                                    <small *ngIf="demand.updated_at" class="text-muted">Ultima atualização em
+                                        {{demand.updated_at | date: 'dd/MM/yyyy'}}</small>
+                                    <small *ngIf="!demand.updated_at" class="text-muted">Ultima atualização em
+                                        {{demand.created_at | date: 'dd/MM/yyyy'}}</small>
+                                </p>
+
+                                <a routerLink="/" class="btn btn-primary">Outras Demandas</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

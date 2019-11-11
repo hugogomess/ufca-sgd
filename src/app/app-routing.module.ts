@@ -1,22 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CommonModule, } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AuthRoutes } from './auth';
 import { UserRoutes } from './user';
-import { AdminRoutes } from './admin';
 import { StaticsRoutes } from './statics';
+import { AdminRoutes } from './admin';
+import { DemandRoutes } from './demand';
+
+import { NotFoundComponent } from './statics/components' 
 
 
 const routes: Routes = [
   ...StaticsRoutes,
   ...AuthRoutes,
   ...UserRoutes,
-  ...AdminRoutes
+  ...AdminRoutes,
+  ...DemandRoutes,
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    CommonModule,
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })

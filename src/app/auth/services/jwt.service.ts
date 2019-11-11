@@ -35,6 +35,9 @@ export class JwtService {
     if (localStorage.getItem('access_token') !==  null) {
       if (!this.jwtHelper.isTokenExpired()) {
         return true;
+      } else {
+        this.logout();
+        return false;
       }
     } else {
       return false;
