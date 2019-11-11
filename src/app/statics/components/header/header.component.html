@@ -1,92 +1,14 @@
-<!-- <nav id="menu" class="navbar navbar-expand-lg">
-
-    <li class="nav-item list-unstyled">
-        <a class="nav-link" routerLink="">
-            <img class="navbar-brand mr-1" id="ufca-logo" src="../../../../assets/images/ufca-logo.png" alt="logo ufca">
-        </a>
-    </li>
-
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul id="menus" class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-primary" routerLink="/">Demandas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" routerLink="/">Contato</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" routerLink="/">Sobre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" routerLink="/">Ajuda</a>
-            </li>
-        </ul>
-        <form class="d-none d-md-inline-block form-inline ml-auto">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Pesquisar Demandas" aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <ul id="NavItem" class="navbar-nav user-button">
-            <li [hidden]="jwtService.isLoggedOut" class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline">{{user.username}}</span>
-                    <i class="fas fa-user fa-lg"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" routerLink="/">
-                        <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> Dados Pessoais
-                    </a>
-                    <a class="dropdown-item" routerLink="/admin">
-                        <i class="fas fa-chart-area fa-sm fa-fw mr-2 text-gray-400"></i> Painel Administrativo
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" routerLink="/" (click)="jwtService.logout()">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item" [hidden]="jwtService.isLogged" routerLink="/login">
-                <button class="btn btn-primary btn-login">
-                    <b>Login</b>
-                </button>
-            </li>
-        </ul>
-    </div>
-</nav> -->
-
-<!--Double navigation-->
 <header>
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg double-nav">
         <!-- SideNav slide-out button -->
         <div class="float-left">
-            <img class="navbar-brand mr-1" id="ufca-logo" src="../../../../assets/images/ufca-logo.png" alt="logo ufca">
+            <a routerLink="/" class="simple-text">
+                <img routerLink="/" class="navbar-brand mr-1" id="ufca-logo" src="../../../../assets/images/ufca-logo.png"
+                alt="logo ufca">
+            </a>
         </div>
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
-            <!-- <li class="nav-item">
-                <form class="d-none d-md-inline-block form-inline ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Pesquisar Demandas" aria-label="Search"
-                            aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
-                                <div class="ripple-container"></div>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </li> -->
             <li [hidden]="jwtService.isLoggedOut" class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">

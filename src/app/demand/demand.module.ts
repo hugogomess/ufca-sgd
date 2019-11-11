@@ -19,10 +19,19 @@ import { AddDemandComponent } from './components';
 import { ListDemandsComponent } from './components';
 import { UpdateDemandComponent } from './components';
 import { ChangeStatusComponent } from './components';
+import { HomeComponent } from './components';
+import { DemandPageComponent } from './components';
 
 
 @NgModule({
-  declarations: [AddDemandComponent, ListDemandsComponent, UpdateDemandComponent, ChangeStatusComponent],
+  declarations: [
+    AddDemandComponent,
+    ListDemandsComponent,
+    UpdateDemandComponent,
+    ChangeStatusComponent,
+    HomeComponent,
+    DemandPageComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,9 +43,11 @@ import { ChangeStatusComponent } from './components';
     MatRippleModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  exports: [],
+  exports: [
+    HomeComponent
+  ],
   providers: [
     DemandService
   ]
