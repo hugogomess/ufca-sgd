@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CanActivate } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../models';
@@ -9,13 +10,14 @@ import { User } from '../models';
 @Injectable({
   providedIn: 'root'
 })
-export class JwtService {
+export class JwtService  {
 
   private apiRoot = environment.apiRoot;
 
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    
     ) { }
 
   public login(user: User) {
@@ -60,4 +62,5 @@ export class JwtService {
       return null;
     }
   }
+
 }
