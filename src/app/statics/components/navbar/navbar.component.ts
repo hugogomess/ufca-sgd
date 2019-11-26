@@ -20,7 +20,11 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
 
     constructor(  public jwtService: JwtService,
-        public userService: UserService,location: Location,  private element: ElementRef, private router: Router) {
+        public userService: UserService,
+        location: Location,  
+        private element: ElementRef,
+        private router: Router) {
+
       this.location = location;
           this.sidebarVisible = false;
     }
