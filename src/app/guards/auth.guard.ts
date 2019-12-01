@@ -18,7 +18,8 @@ export class AuthGuard implements CanActivate{
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(this.JwtService .isLogged !== true) {
-        this.router.navigate(['/login'])
+      window.alert('Acesso negado, É preciso esta logado para acessar esta pagina!')
+      this.router.navigate(['/login'])
     }
     return true;
   }
