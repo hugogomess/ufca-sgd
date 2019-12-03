@@ -9,7 +9,7 @@ import { StaticsRoutes } from './statics';
 import { AdminRoutes } from './admin';
 import { DemandRoutes } from './demand';
 
-import { NotFoundComponent } from './statics/components' 
+import { NotFoundComponent } from './statics/components';
 
 
 const routes: Routes = [

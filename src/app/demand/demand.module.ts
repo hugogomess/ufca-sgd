@@ -19,7 +19,6 @@ import { AddDemandComponent } from './components';
 import { ListDemandsComponent } from './components';
 import { UpdateDemandComponent } from './components';
 import { ChangeStatusComponent } from './components';
-import { HomeComponent } from './components';
 import { DemandPageComponent } from './components';
 
 
@@ -29,7 +28,6 @@ import { DemandPageComponent } from './components';
     ListDemandsComponent,
     UpdateDemandComponent,
     ChangeStatusComponent,
-    HomeComponent,
     DemandPageComponent,
   ],
   imports: [
@@ -46,7 +44,6 @@ import { DemandPageComponent } from './components';
     MatSelectModule,
   ],
   exports: [
-    HomeComponent
   ],
   providers: [
     DemandService

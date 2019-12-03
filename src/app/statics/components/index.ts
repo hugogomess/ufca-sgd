@@ -1,4 +1,3 @@
-export * from './header';
 export * from './not-found';
 export * from './permission-denid';
 export * from './unavailble-service';
