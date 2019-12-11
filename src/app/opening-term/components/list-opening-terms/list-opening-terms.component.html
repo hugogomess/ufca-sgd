@@ -1,0 +1,97 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <h4 class="card-title">Gerenciar Termos de Abertura</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" (click)="closeAlert()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <b>{{successMessage}}</b>
+                        </div>
+                        <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" (click)="closeAlert()" data-dismiss="alert"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <b>{{error}}</b>
+                            <br>
+                            <b>{{error.error | json}}</b>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4 text-right">
+
+                                <app-add-opening-term (confirm)="setSuccessAlert($event.message)" [id]="'add-opening-term-modal'">
+                                </app-add-opening-term>
+
+                                <button class="btn btn-success" data-toggle="modal"
+                                    [attr.data-target]="'#add-opening-term-modal'">
+                                    <i class="fas fa-plus"></i><b> Criar Termo de Abertura </b>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade"
+                                    bdColor="rgba(240,240,240,0.8)" size="medium" color="#0275d8"
+                                    name="datatable-spinner">
+                                </ngx-spinner>
+                                <div class="table-responsive col-md-12">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                        class="table table-striped" width="100%" cellspacing="0">
+                                        <thead class="">
+                                            <tr>
+                                                <th><b>Nome do Projeto</b></th>
+                                                <th><b>Demanda Relacionada</b></th>
+                                                <th><b>Termo de Abertura</b></th>
+                                                <th><b>Data de Criação</b></th>
+                                                <th><b>Ações</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngIf="openingTerms.length != 0">
+                                            <tr *ngFor="let openingTerm of openingTerms">
+                                                <td>{{openingTerm.project_name}}</td>
+                                                <td>
+                                                    <span *ngFor="let demand of demands">
+                                                        <span *ngIf="demand.id === openingTerm.demand">
+                                                            {{demand.name}}
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td>{{openingTerm.opening_term}}</td>
+                                                <td>
+                                                    {{openingTerm.created_at | date: 'dd/MM/yyyy'}}
+                                                </td>
+                                                <td>
+                                                    <app-update-opening-term [openingTermId]="openingTerm.id" [openingTermName]="openingTerm.project_name"
+                                                        (confirm)="setSuccessAlert($event.message)">
+                                                    </app-update-opening-term>
+
+                                                    <button mat-raised-button type="button" matTooltip="Editar Termo de Abertura"
+                                                        [matTooltipPosition]="'above'"
+                                                        class="btn btn-info btn-link btn-sm btn-just-icon"
+                                                        data-toggle="modal"
+                                                        [attr.data-target]="'#update-'.concat(openingTerm.id)">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

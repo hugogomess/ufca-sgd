@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.jwtService.login(this.user).subscribe(
         success => {
           this.spinner.hide();
-          this.router.navigate(['']);
+          this.router.navigate(['/admin']);
         },
         error => {
           this.spinner.hide();
