@@ -7,7 +7,7 @@
                         <div class="card-icon">
                             <i class="material-icons">content_copy</i>
                         </div>
-                        <h4 class="card-title">Gerenciar Demandas</h4>
+                        <h4 class="card-title">Gerenciar Matrizes Gut</h4>
                     </div>
                     <div class="card-body">
                         <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -29,12 +29,12 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4 text-right">
 
-                                <app-add-demand (confirm)="setSuccessAlert($event.message)" [id]="'add-demand-modal'">
-                                </app-add-demand>
+                                <app-add-gut-matrix (confirm)="setSuccessAlert($event.message)" [id]="'add-gut-matrix-modal'">
+                                </app-add-gut-matrix>
 
                                 <button class="btn btn-success" data-toggle="modal"
-                                    [attr.data-target]="'#add-demand-modal'">
-                                    <i class="fas fa-plus"></i><b> Abrir Demanda</b>
+                                    [attr.data-target]="'#add-gut-matrix-modal'">
+                                    <i class="fas fa-plus"></i><b> Criar Matriz Gut </b>
                                 </button>
                             </div>
                         </div>
@@ -50,68 +50,53 @@
                                         <thead class="">
                                             <tr>
                                                 <th><b>Nome</b></th>
-                                                <th><b>Descrição</b></th>
-                                                <th><b>Requisitante</b></th>
-                                                <th><b>Origem</b></th>
+                                                <th><b>Gravidade</b></th>
+                                                <th><b>Urgência</b></th>
+                                                <th><b>Tendência</b></th>
+                                                <th><b>GUT</b></th>
                                                 <th><b>Data de Criação</b></th>
-                                                <th><b>Status</b></th>
                                                 <th><b>Ações</b></th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngIf="demands.length != 0">
-                                            <tr *ngFor="let demand of demands">
-                                                <td>{{demand.name}}</td>
+                                        <tbody *ngIf="gutMatrices.length != 0">
+                                            <tr *ngFor="let gutMatrix of gutMatrices">
+                                                <td>{{gutMatrix.name}}</td>
                                                 <td>
-                                                    {{demand.description}}
-                                                </td>
-                                                <td>{{demand.requester}}</td>
-                                                <td>{{demand.origin}}</td>
-                                                <td>
-                                                    {{demand.created_at | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    <span *ngIf="demand.status == 'ABERTA'" matTooltip="Demanda Aberta"
-                                                        [matTooltipPosition]="'above'"
-                                                        class="badge badge-pill badge-success">
-                                                        ABERTA
-                                                    </span>
-
-                                                    <span *ngIf="demand.status == 'EM ANDAMENTO'"
-                                                        matTooltip="Demanda Em Andamento" [matTooltipPosition]="'above'"
-                                                        class="badge badge-pill badge-warning">
-                                                        EM ANDAMENTO
-                                                    </span>
-
-                                                    <span *ngIf="demand.status == 'FECHADA'"
-                                                        matTooltip="Demanda Finalizada" [matTooltipPosition]="'above'"
-                                                        class="badge badge-pill badge-secondary">
-                                                        FECHADA
+                                                    <span *ngFor="let gravityString of gravityStringList">
+                                                        <span *ngIf="gravityString.gravity === gutMatrix.gravity">
+                                                            {{gravityString.gravity}} - {{gravityString.text}}
+                                                        </span>
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <app-update-demand [demandId]="demand.id" [demandName]="demand.name"
+                                                    <span *ngFor="let urgencyString of urgencyStringList">
+                                                        <span *ngIf="urgencyString.urgency === gutMatrix.urgency">
+                                                            {{urgencyString.urgency}} - {{urgencyString.text}}
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span *ngFor="let trendString of trendStringList">
+                                                        <span *ngIf="trendString.trend === gutMatrix.trend">
+                                                            {{trendString.trend}} - {{trendString.text}}
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td>{{gutMatrix.gut}}</td>
+                                                <td>
+                                                    {{gutMatrix.created_at | date: 'dd/MM/yyyy'}}
+                                                </td>
+                                                <td>
+                                                    <app-update-gut-matrix [gutMatrixId]="gutMatrix.id" [gutMatrixName]="gutMatrix.name"
                                                         (confirm)="setSuccessAlert($event.message)">
-                                                    </app-update-demand>
+                                                    </app-update-gut-matrix>
 
-                                                    <app-change-status [demandId]="demand.id" [demandName]="demand.name"
-                                                        (confirm)="setSuccessAlert($event.message)">
-                                                    </app-change-status>
-
-                                                    <button mat-raised-button type="button" matTooltip="Editar Demanda"
+                                                    <button mat-raised-button type="button" matTooltip="Editar Matriz Gut"
                                                         [matTooltipPosition]="'above'"
                                                         class="btn btn-info btn-link btn-sm btn-just-icon"
                                                         data-toggle="modal"
-                                                        [attr.data-target]="'#update-'.concat(demand.id)">
+                                                        [attr.data-target]="'#update-'.concat(gutMatrix.id)">
                                                         <i class="material-icons">edit</i>
-                                                    </button>
-
-                                                    <button mat-raised-button type="button"
-                                                        matTooltip="Alterar Status da Demanda"
-                                                        [matTooltipPosition]="'above'"
-                                                        class="btn btn-info btn-link btn-sm btn-just-icon"
-                                                        data-toggle="modal"
-                                                        [attr.data-target]="'#change-status-'.concat(demand.id)">
-                                                        <i class="material-icons">cached</i>
                                                     </button>
                                                 </td>
                                             </tr>

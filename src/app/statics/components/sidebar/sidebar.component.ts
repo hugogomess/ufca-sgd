@@ -11,8 +11,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/admin', title: 'Painel Administrativo',  icon: 'dashboard', class: '' },
     { path: '/admin/demandas', title: 'Gerenciar Demandas',  icon: 'content_copy', class: '' },
     { path: '/admin/usuarios', title: 'Gerenciar Usuários',  icon:'person', class: '' },
-    { path: '/admin/matriz-gut', title: 'Matrizes GUT',  icon:'content_paste', class: '' },
-    { path: '/admin/termo-de-abertura', title: 'Termos de Abertura',  icon:'library_books', class: '' },
+    { path: '/admin/matrizes-gut', title: 'Matrizes GUT',  icon:'content_paste', class: '' },
+    { path: '/admin/termos-de-abertura', title: 'Termos de Abertura',  icon:'library_books', class: '' },
 ];
 @Component({
   selector: 'app-sidebar',
