@@ -46,7 +46,7 @@ export class ChangeStatusComponent implements OnInit {
   public changeStatus() {
     if (this.demandChangeStatusForm.form.valid) {
       this.spinner.show('change-status-spinner-' + this.demandId);
-      this.demandService.updateDemand(this.demand).subscribe(
+      this.demandService.switchStatus(this.demand).subscribe(
         success => {
           const successMessage = 'O status da demanda ' + this.demandName + ' foi alterado com sucesso!';
           this.spinner.hide('change-status-spinner-' + this.demandId);

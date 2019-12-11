@@ -52,9 +52,11 @@
                                                 <th><b>Nome</b></th>
                                                 <th><b>Descrição</b></th>
                                                 <th><b>Requisitante</b></th>
+                                                <th><b>Email Requisitante</b></th>
                                                 <th><b>Origem</b></th>
                                                 <th><b>Data de Criação</b></th>
                                                 <th><b>Status</b></th>
+                                                <th><b>GUT</b></th>
                                                 <th><b>Ações</b></th>
                                             </tr>
                                         </thead>
@@ -65,6 +67,7 @@
                                                     {{demand.description}}
                                                 </td>
                                                 <td>{{demand.requester}}</td>
+                                                <td>{{demand.requester_email}}</td>
                                                 <td>{{demand.origin}}</td>
                                                 <td>
                                                     {{demand.created_at | date: 'dd/MM/yyyy'}}
@@ -86,6 +89,18 @@
                                                         matTooltip="Demanda Finalizada" [matTooltipPosition]="'above'"
                                                         class="badge badge-pill badge-secondary">
                                                         FECHADA
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span *ngIf="demand.gut_matrix === null">
+                                                        Não Informado
+                                                    </span>
+                                                    <span *ngIf="demand.gut_matrix !== null">
+                                                        <span *ngFor="let gutMatrix of gutMatrices">
+                                                            <span *ngIf="gutMatrix.id === demand.gut_matrix">
+                                                                {{gutMatrix.gut}}
+                                                            </span>
+                                                        </span>
                                                     </span>
                                                 </td>
                                                 <td>

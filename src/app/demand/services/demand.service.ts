@@ -59,4 +59,11 @@ export class DemandService {
     return this.http.patch(url, demand);
   }
 
+  public switchStatus(demand: Demand): Observable<any> {
+    const url = this.apiRoot + `demands/${demand.id}/switch-status/`;
+    return this.http.post(url, {
+      "status": demand.status
+    });
+  }
+
 }

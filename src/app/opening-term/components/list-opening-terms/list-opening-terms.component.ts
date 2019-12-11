@@ -3,71 +3,73 @@ import { Subject } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DataTableDirective } from 'angular-datatables';
 
-import { Demand } from '../../models';
-import { DemandService } from '../../services';
+import { OpeningTerm } from '../../models';
+import { OpeningTermService } from '../../services';
+import { Demand, DemandService } from '../../../demand';
 import { ptBrDataTable } from '../../../utils';
-import { GutMatrixService, GutMatrix } from 'src/app/gut-matrix';
 
 @Component({
-  selector: 'app-list-demands',
-  templateUrl: './list-demands.component.html',
-  styleUrls: ['./list-demands.component.css']
+  selector: 'app-list-opening-terms',
+  templateUrl: './list-opening-terms.component.html',
+  styleUrls: ['./list-opening-terms.component.css']
 })
-export class ListDemandsComponent implements OnInit, OnDestroy {
+export class ListOpeningTermsComponent implements OnInit, OnDestroy {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   error: any;
-  demands: Demand[] = [];
+  openingTerms: OpeningTerm[] = [];
+  demands: Demand[];
   success: boolean;
   successMessage: string;
-  gutMatrices: GutMatrix[];
 
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
 
   constructor(
+    private openingTermService: OpeningTermService,
     private demandService: DemandService,
-    private gutMatrixService: GutMatrixService,
     private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.dtOptions = {
+      order: [[ 4, "desc" ]],
       paging: true,
       pageLength: 10,
       stateSave: false,
       retrieve: true,
-      language: ptBrDataTable('demanda', 'demandas', 'F')
+      language: ptBrDataTable('termo de abertura', 'termos de abertura', 'M')
     };
-    this.findAllDemands();
+    this.findAllOpeningTerms();
 
-    this.gutMatrixService.findAll().subscribe(
+    this.demandService.findAll().subscribe(
       res => {
-        this.gutMatrices = res;
+        this.demands = res;
       },
       error => {
         this.error = error;
-        this.gutMatrices = [];
+        this.demands = [];
       }
     );
+
   }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  private findAllDemands() {
+  private findAllOpeningTerms() {
     this.spinner.show('datatable-spinner');
-    this.demandService.findAll().subscribe(
+    this.openingTermService.findAll().subscribe(
       res => {
-        this.demands = res;
+        this.openingTerms = res;
         this.render();
         this.spinner.hide('datatable-spinner');
       },
       error => {
         this.error = error;
-        this.demands = [];
+        this.openingTerms = [];
         this.render();
         this.spinner.hide('datatable-spinner');
       }
@@ -76,7 +78,7 @@ export class ListDemandsComponent implements OnInit, OnDestroy {
 
   public setSuccessAlert(message: string): void {
     this.closeAlert();
-    this.findAllDemands();
+    this.findAllOpeningTerms();
     this.success = true;
     this.successMessage = message;
   }
