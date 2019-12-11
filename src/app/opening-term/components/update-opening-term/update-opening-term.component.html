@@ -1,0 +1,65 @@
+<div class="modal fade" role="dialog" [id]="'update-' + openingTermId" tabindex="-1" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <ngx-spinner [fullScreen]="false" type="ball-spin-clockwise-fade" bdColor="rgba(240,240,240,0.8)"
+                color="#0275d8" [name]="'update-openingTerm-spinner-' + openingTermId">
+            </ngx-spinner>
+            <div class="modal-header">
+                <h4 class="modal-title"><b>Atualizar Termo de Abertura</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="error" class="form-group alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="text-center">{{ error.error | json }}</p>
+                </div>
+                <div class="text-danger text-center form-group">
+                    Os campos com asterisco (*) são obrigatórios!
+                </div>
+                <form #openingTermFormUpdate="ngForm" (ngSubmit)="updateOpeningTerm()" id="update-opening-term-form">
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" matInput placeholder="Nome do Projeto" id="project_name" required
+                                    [(ngModel)]="openingTerm.project_name" name="project_name" #project_name="ngModel">
+                            </mat-form-field>
+                            <div [hidden]="project_name.valid || project_name.pristine"
+                                class="error-validation text-danger text-left">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h4 class="text-left">Demanda</h4>
+                            <mat-form-field>
+                                <mat-label>Selecione a demanda</mat-label>
+                                <mat-select disableOptionCentering required [(ngModel)]="openingTerm.demand"
+                                    name="demand">
+                                    <mat-option *ngFor="let demand of demands" [value]="demand.id">
+                                        {{demand.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                &nbsp;&nbsp;
+                <button type="submit" class="btn btn-success" (click)="updateOpeningTerm()"
+                    [disabled]="!openingTermFormUpdate.form.valid" form="update-opening-term-form">
+                    <b>Salvar Mudanças</b>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

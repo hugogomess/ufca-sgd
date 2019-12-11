@@ -14,6 +14,8 @@ import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { AdminModule } from './admin';
 import { DemandModule } from './demand';
+import { GutMatrixModule } from './gut-matrix';
+import { OpeningTermModule } from './opening-term';
 import { environment } from '../environments/environment';
 
 export function tokenGetter() {
@@ -45,7 +47,9 @@ export function tokenGetter() {
     LoadingBarModule,
     LoadingBarRouterModule,
     AdminModule,
-    DemandModule
+    DemandModule,
+    GutMatrixModule,
+    OpeningTermModule
   ],
   providers: [],
   bootstrap: [AppComponent]

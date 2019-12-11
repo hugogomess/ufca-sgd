@@ -44,9 +44,26 @@ export class DemandService {
       );
   }
 
+  public findByFilter(filterField: string, value: string): Observable<Demand[]> {
+    const url = this.apiRoot + `demands/?${filterField}=${value}`;
+
+    return this.http.get<Demand[]>(url)
+      .pipe(
+        map(res => res as Demand[]),
+        catchError(error => throwError(error.message || error))
+      );
+  }
+
   public updateDemand(demand: Demand): Observable<any> {
     const url = this.apiRoot + `demands/${demand.id}/`;
     return this.http.patch(url, demand);
+  }
+
+  public switchStatus(demand: Demand): Observable<any> {
+    const url = this.apiRoot + `demands/${demand.id}/switch-status/`;
+    return this.http.post(url, {
+      "status": demand.status
+    });
   }
 
 }

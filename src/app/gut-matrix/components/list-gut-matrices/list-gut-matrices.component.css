@@ -1,0 +1,12 @@
+#filters-body {
+    margin-bottom: 10px;
+}
+
+.deleted {
+    font-style: italic;
+    text-decoration: underline red;
+}
+
+.btn-action {
+    margin: 5px;
+}

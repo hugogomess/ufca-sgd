@@ -49,6 +49,21 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <mat-form-field class="example-full-width">
+                                <input type="email" matInput placeholder="Email do Requisitante"
+                                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$" id="requester_email"
+                                    required [(ngModel)]="demand.requester_email" name="requester_email"
+                                    #requester_email="ngModel">
+                            </mat-form-field>
+                            <div [hidden]="requester_email.valid || requester_email.pristine"
+                                class="error-validation text-danger text-left">
+                                Este campo é obrigatório!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
                                 <textarea matInput placeholder="Origem" id="origin" required [(ngModel)]="demand.origin"
                                     name="origin" #origin="ngModel" rows="2"></textarea>
                             </mat-form-field>
@@ -72,6 +87,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h4 class="text-left">Matriz Gut</h4>
+                            <mat-form-field>
+                                <mat-label>Selecione uma Matriz Gut para priorizar a Demanda</mat-label>
+                                <mat-select disableOptionCentering [(ngModel)]="demand.gut_matrix" name="gut_matrix">
+                                    <mat-option *ngFor="let gutMatrix of gutMatrices" [value]="gutMatrix.id">
+                                        {{gutMatrix.name}} - {{gutMatrix.gut}} pts
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">

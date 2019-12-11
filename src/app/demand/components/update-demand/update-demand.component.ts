@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Demand } from '../../models';
 import { DemandService } from '../../services';
+import { GutMatrixService, GutMatrix } from 'src/app/gut-matrix';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class UpdateDemandComponent implements OnInit {
 
   demand: Demand;
   error: any;
+  gutMatrices: GutMatrix[];
 
   @Input() demandId: number;
   @Input() demandName: string;
@@ -24,6 +26,7 @@ export class UpdateDemandComponent implements OnInit {
 
   constructor(
     private demandService: DemandService,
+    private gutMatrixService: GutMatrixService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -38,6 +41,16 @@ export class UpdateDemandComponent implements OnInit {
       error => {
         this.spinner.hide('update-demand-spinner-' + this.demandId);
         this.error = error; // TODO
+      }
+    );
+
+    this.gutMatrixService.findAll().subscribe(
+      res => {
+        this.gutMatrices = res;
+      },
+      error => {
+        this.error = error;
+        this.gutMatrices = [];
       }
     );
   }

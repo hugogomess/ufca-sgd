@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './components';
 import { NavbarComponent } from './components';
 import { SidebarComponent } from './components';
 import { FooterComponent } from './components';
@@ -13,7 +12,6 @@ import { NotFoundComponent } from './components';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
@@ -27,7 +25,6 @@ import { NotFoundComponent } from './components';
     RouterModule
   ],
   exports: [
-    HeaderComponent,
     FooterComponent,
     NavbarComponent,
     SidebarComponent

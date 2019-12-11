@@ -6,6 +6,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Demand } from '../../models';
 import { DemandService } from '../../services';
 import { ptBrDataTable } from '../../../utils';
+import { GutMatrixService, GutMatrix } from 'src/app/gut-matrix';
 
 @Component({
   selector: 'app-list-demands',
@@ -20,18 +21,19 @@ export class ListDemandsComponent implements OnInit, OnDestroy {
   demands: Demand[] = [];
   success: boolean;
   successMessage: string;
+  gutMatrices: GutMatrix[];
 
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
 
   constructor(
     private demandService: DemandService,
+    private gutMatrixService: GutMatrixService,
     private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.dtOptions = {
-      order: [[ 4, "desc" ]],
       paging: true,
       pageLength: 10,
       stateSave: false,
@@ -39,6 +41,16 @@ export class ListDemandsComponent implements OnInit, OnDestroy {
       language: ptBrDataTable('demanda', 'demandas', 'F')
     };
     this.findAllDemands();
+
+    this.gutMatrixService.findAll().subscribe(
+      res => {
+        this.gutMatrices = res;
+      },
+      error => {
+        this.error = error;
+        this.gutMatrices = [];
+      }
+    );
   }
 
   ngOnDestroy(): void {
