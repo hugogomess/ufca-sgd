@@ -19,7 +19,6 @@ import { AddDemandComponent } from './components';
 import { ListDemandsComponent } from './components';
 import { UpdateDemandComponent } from './components';
 import { ChangeStatusComponent } from './components';
-import { DemandPageComponent } from './components';
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import { DemandPageComponent } from './components';
     ListDemandsComponent,
     UpdateDemandComponent,
     ChangeStatusComponent,
-    DemandPageComponent,
   ],
   imports: [
     CommonModule,
