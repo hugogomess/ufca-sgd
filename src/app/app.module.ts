@@ -9,7 +9,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth';
+import { AuthModule, JwtService } from './auth';
 import { StaticsModule } from './statics';
 import { UserModule } from './user';
 import { AdminModule } from './admin';
@@ -17,6 +17,7 @@ import { DemandModule } from './demand';
 import { GutMatrixModule } from './gut-matrix';
 import { OpeningTermModule } from './opening-term';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './guards';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -51,7 +52,7 @@ export function tokenGetter() {
     GutMatrixModule,
     OpeningTermModule
   ],
-  providers: [],
+  providers: [JwtService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
